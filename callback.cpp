@@ -1,3 +1,7 @@
+/*
+ from http://pract.webcrow.jp/pages/contents/c/pointer/pointer-of-func
+*/
+
 #include <stdio.h>
 /* わかりやすいようにtypedefして使う */
 typedef int8_t	(*p_func_type)(int32_t);
