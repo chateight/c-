@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main(){
-    
+
     // basic pointer function
     int aa = 7;
     int* ptra = &aa;
@@ -20,5 +20,8 @@ int main(){
 
     // null pointer
     ptr = nullptr;          // null pointer set to 0x0
-    std::cout << ptr << std::endl;  // 
+    std::cout << ptr << std::endl; 
+
+    // cast
+    std::cout << static_cast<float>(a)/3 << std::endl;
 }
