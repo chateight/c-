@@ -49,7 +49,7 @@ int main(){
     //
     while(1){
         int i = getchar();
-        i -= ('0' + 1);
+        i -= '0' + 1;
         if( 0 <= i && i < 3 )
             menu[i]();
     }
