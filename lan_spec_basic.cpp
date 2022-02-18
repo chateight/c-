@@ -1,6 +1,19 @@
 #include <iostream>
-
 #include <string.h>
+
+class basic_class{
+    public: struct production{
+        int qty;
+        int invent;
+    };
+    production metal = {
+        24,
+        12,
+    };
+    production ret_metal(){
+        return metal;
+    }
+};
 
 int main(){
 
@@ -45,4 +58,60 @@ int main(){
         std::cout << ele;
     }
     std::cout << std::endl;
+
+    // struct
+    struct product{
+        int id;
+        int price;
+        int stock;
+    };
+    product note = {        // initialize "note" having product structure
+            101,
+            200,
+            32,
+    };
+    product* s_ptr = &note; // pointer to the note struct
+    std::cout << s_ptr -> id << std::endl;  // access by pointer
+    note.stock --;                          // access by member
+    std::cout << s_ptr -> stock << std::endl;
+
+    // union    *where do I use it?
+    union product_u{
+        int pro_a;
+        int pro_b;
+        int pro_c;
+    };
+    product_u u;
+    std::cout << &u.pro_a << std::endl;     // pro_a, pro_b and pro_c denote same address
+    std::cout << &u.pro_b << std::endl;
+
+    // enumeration
+    enum class product_l : int{             // enumeration varialble type definition
+        n_pro_a,
+        n_pro_b,
+        n_pro_c = 10,
+        n_pro_d,
+    };
+    product_l num = product_l::n_pro_c;
+    std::cout << static_cast<int>(num) << std::endl;        // implicit type conversion does not work
+
+    // referencce
+    int i = 0;
+    int& rj = i;        // rj and i denote same address
+    rj = i;
+
+    rj = 42;
+    std::cout << i << std::endl;
+    
+    // const
+    const int ci = 32;
+    const int& cr = ci;     // const reference should be defined as const
+    std::cout << cr << std::endl;
+
+    // basic class usage
+    basic_class bc;
+    basic_class::production prd = bc.ret_metal();           // actual data is conceiled in the class
+    std::cout <<  " metal return = " << prd.qty << std::endl;
+    //std::cout <<  " metal return = " << metal.qty << std::endl;   // this does not work
 }
+
