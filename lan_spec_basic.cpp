@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 
+// struct class
 class basic_class{
     public: struct production{
         int qty;
@@ -15,6 +16,27 @@ class basic_class{
     }
 };
 
+// nested type class. it may be used to change all type statements only by changing the definition statement( i.e. int to float )
+class data{
+public:
+    using integer = int;
+    integer get_value();        // define function as a global scope
+    void set_value(integer new_value);
+
+private:
+    integer value;
+};
+
+data::integer data::get_value(){    // outer funtion definition
+    return value;
+}
+
+void data::set_value(integer new_value){    // same as above
+    integer temp = new_value;               // menber function handle variables just inside the class
+    value = temp;
+}
+
+// main routine
 int main(){
 
     // basic pointer function
@@ -113,5 +135,26 @@ int main(){
     basic_class::production prd = bc.ret_metal();           // actual data is conceiled in the class
     std::cout <<  " metal return = " << prd.qty << std::endl;
     //std::cout <<  " metal return = " << metal.qty << std::endl;   // this does not work
+
+    // type deduction
+    float array_t[] = {3.0f, 2.1f, 5.2f, 8.1f, 1.5f};
+    for (auto e : array_t){
+        const std::type_info& t_info = typeid(e);
+        const char* typeName = t_info.name();
+        std::cout << " type : " << typeName << std::endl;
+    }
+
+    // nested type
+    data d;
+    using integer = data::integer;
+    integer value =42;
+    d.set_value(value);
+    std::cout << d.get_value() << std::endl;
+
+    // console line input
+    std::string con_in;
+    std::cout << "plese input some sentence ";
+    std::getline(std::cin, con_in);
+    std::cout << "input string : " << stricon_in << std::endl;
 }
 
