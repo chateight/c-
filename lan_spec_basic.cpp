@@ -115,7 +115,7 @@ int main(){
         n_pro_d,
     };
     product_l num = product_l::n_pro_c;
-    std::cout << static_cast<int>(num) << std::endl;        // implicit type conversion does not work
+    std::cout << "enumeration : "<< static_cast<int>(num) << std::endl;        // you must define type, implicit type conversion does not work
 
     // referencce
     int i = 0;
@@ -123,7 +123,7 @@ int main(){
     rj = i;
 
     rj = 42;
-    std::cout << i << std::endl;
+    std::cout << "reference : " << i << std::endl;
     
     // const
     const int ci = 32;
@@ -155,6 +155,13 @@ int main(){
     std::string con_in;
     std::cout << "plese input some sentence ";
     std::getline(std::cin, con_in);
-    std::cout << "input string : " << stricon_in << std::endl;
-}
+    std::cout << "input string : " << con_in << std::endl;
 
+    // lambda expression
+    auto l_e = [](int v){
+        std::cout << " value : " << v << std::endl;
+        return (v*v);
+    };
+    int ret = l_e(12);
+    std::cout << " return value : "<< ret << std::endl;
+}
