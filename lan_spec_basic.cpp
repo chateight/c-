@@ -158,10 +158,12 @@ int main(){
     std::cout << "input string : " << con_in << std::endl;
 
     // lambda expression
-    auto l_e = [](int v){
+    int w = 32;
+    auto l_e = [=](int v){      // [=] or [w] have same meaning in this case, to copy the external variable
         std::cout << " value : " << v << std::endl;
-        return (v*v);
+        return (v*w);
     };
+
     int ret = l_e(12);
     std::cout << " return value : "<< ret << std::endl;
 }
