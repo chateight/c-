@@ -29,8 +29,8 @@ class c_class{
 public:
     double *m_alloc;
 
-    explicit c_class();
-    explicit c_class(const c_class& cp);                     // copy constructor
+    explicit c_class();                             // not to allow the use of default constructor
+    explicit c_class(const c_class& cp);            // copy constructor
     ~c_class();
 
     void set_name(string s_name);
@@ -87,7 +87,7 @@ int main(){
     A a;
     a.set(32);
 
-    const A& ca = a;        // ca is a reference to the instance a
+    const A& ca = a;        // copy constructor : ca is a reference to the instance a
     a.set(70);
     cout << "--- constant function of the class ---" << endl;
     cout << "const function : " << ca.get() << endl;    // -> 70
