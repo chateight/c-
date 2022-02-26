@@ -63,12 +63,34 @@ float box::peri_calc() const{
     return (width+height+depth)*4;
 }
 
+// object as a pointer & this pointer, it looks as an extention of the usual pointer
+class p_class_base{
+
+    string str = "initial string";
+
+public:
+    void prn(string str);
+};
+void p_class_base::prn(string str){
+    this-> str = str;           // set augment "str" to the local string "str"
+    cout << "accepted string : " << this->str << endl;  // "this" means class p_class_base pointer
+}
+
+void p_call(p_class_base* poi, string st){
+    poi->prn(st);
+}
+
 int main(){
     c_2d a(10, 20);
+    cout << "----- pure virtual -----" << endl;
     cout << "area : " << a.area_calc() << endl;
     cout << "total side : " << a.peri_calc() << endl;
     box b(20, 30, 40);
     cout << "total area : " << b.area_calc() << endl;
     cout << "total side : "<< b.peri_calc() << endl;
+
+    p_class_base pt;
+    cout << "----- object as a pointer -----" << endl;
+    p_call(&pt, "check the object pointer");
 }
 

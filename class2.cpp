@@ -52,7 +52,7 @@ int base::calc(){
 
 
 // inherit class
-class inherit : public base{        // define ancestor class access spcifier to use ancestor class resouces
+class inherit : public base{        // define ancestor class access spcifier to use ancestor class resouces from inherit class instance
     string v2_str = "inherit class is called";
 
 public:

@@ -6,6 +6,7 @@
 
 typedef void (*FUNC_POINTER)(int, int);
 
+// callback function
 void add(int a, int b){
     printf("a + b = %d\n", a + b);
 }
@@ -18,7 +19,7 @@ void calc(int a, int b, FUNC_POINTER p){        // using callback function
     (*p)(a, b);
 }
 //
-//
+// function pointer
 void start(){
     printf("Start\n");
 }
@@ -32,11 +33,12 @@ void end(){
     exit(0);
 }
 
-void (*menu[3])() ={    // define the function pointer array
+void (*menu[])() ={                             // define the function pointer array
     start, save, end
 };
 
 int main(){
+    //
     // run the callback function example
     FUNC_POINTER p;
     p = add;
@@ -45,8 +47,7 @@ int main(){
     calc(100, 100, p);
     //
     // run the funcion pointer example
-    // console input number 1,2,3(exit) defines the function pointer
-    //
+    // console input number 1,2,3(exit) defines pointer of the function array
     while(1){
         int i = getchar();
         i -= '0' + 1;
