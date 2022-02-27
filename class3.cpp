@@ -63,7 +63,7 @@ float box::peri_calc() const{
     return (width+height+depth)*4;
 }
 
-// object as a pointer & this pointer, it looks as an extention of the usual pointer
+// object as a pointer & "this" pointer, it looks as an extention of the usual pointer
 class p_class_base{
 
     string str = "initial string";
@@ -80,6 +80,43 @@ void p_call(p_class_base* poi, string st){
     poi->prn(st);
 }
 
+// friend function
+class vector3d{
+    float x;
+    float y;
+    float z;
+
+public:
+    vector3d();
+    explicit vector3d(float x, float y, float z);
+    friend vector3d add(const vector3d& lhs, const vector3d& rhs);      // friend function
+
+    void dump() const; 
+};
+
+vector3d::vector3d()
+    : vector3d(0,0,0)
+{
+}
+
+vector3d::vector3d(float x, float y, float z)
+    : x(x), y(y), z(z)
+{
+}
+
+vector3d add(const vector3d& lhs, const vector3d& rhs){                 // description of the friend function which is an external function, not a member function
+    vector3d result;
+    result.x = lhs.x + rhs.x;
+    result.y = lhs.y + rhs.y;
+    result.z = lhs.z + rhs.z;
+    return result;
+}
+
+void vector3d::dump() const{
+    cout << x << "," << y << "," << z << endl;
+}
+
+
 int main(){
     c_2d a(10, 20);
     cout << "----- pure virtual -----" << endl;
@@ -87,10 +124,18 @@ int main(){
     cout << "total side : " << a.peri_calc() << endl;
     box b(20, 30, 40);
     cout << "total area : " << b.area_calc() << endl;
-    cout << "total side : "<< b.peri_calc() << endl;
+    cout << "total side : " << b.peri_calc() << endl;
 
     p_class_base pt;
     cout << "----- object as a pointer -----" << endl;
     p_call(&pt, "check the object pointer");
+
+    cout << "----- \"anonymous union\"(later, if it is needed) -----" << endl;
+
+    cout << "----- \"friend function\" which can access local variables unless it is not a member function -----" << endl;
+    vector3d fa(1,1,1), fb(1,2,4);
+    vector3d fc = add(fa, fb);
+    fc.dump();
+
 }
 
