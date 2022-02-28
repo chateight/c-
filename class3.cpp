@@ -104,8 +104,8 @@ vector3d::vector3d(float x, float y, float z)
 {
 }
 
-vector3d add(const vector3d& lhs, const vector3d& rhs){                 // description of the friend function which is an external function, not a member function
-    vector3d result;
+vector3d add(const vector3d& lhs, const vector3d& rhs){     // description of the friend function which is an external function, not a member function
+    vector3d result;                                        // it accepts pointer of the class or refernce, since it is not a member of the class
     result.x = lhs.x + rhs.x;
     result.y = lhs.y + rhs.y;
     result.z = lhs.z + rhs.z;
@@ -113,9 +113,34 @@ vector3d add(const vector3d& lhs, const vector3d& rhs){                 // descr
 }
 
 void vector3d::dump() const{
-    cout << x << "," << y << "," << z << endl;
+    cout << x << ", " << y << ", " << z << endl;
 }
 
+// static member and function
+class s_class{
+
+    static int count;
+
+public:
+    s_class();
+    ~s_class();
+
+    static void show_count();
+};
+
+int s_class::count = 0;
+
+s_class::s_class(){
+    ++count;
+}
+
+s_class::~s_class(){
+    --count;
+}
+
+void s_class::show_count(){
+    cout << "static count : " << count << endl;
+}
 
 int main(){
     c_2d a(10, 20);
@@ -137,5 +162,11 @@ int main(){
     vector3d fc = add(fa, fb);
     fc.dump();
 
+    cout << "----- static member & function -----" << endl;
+    s_class::show_count();                  // when you make instance with "for" loop, its behavior is strange due to the destructor?
+    s_class ins1;
+    s_class::show_count();
+    s_class ins2;
+    s_class::show_count();
 }
 
