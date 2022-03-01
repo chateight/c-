@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -132,15 +133,18 @@ int s_class::count = 0;
 
 s_class::s_class(){
     ++count;
+    cout << "constructor was called" << endl;
 }
 
 s_class::~s_class(){
     --count;
+    cout << "destructor was called" << endl;
 }
 
 void s_class::show_count(){
     cout << "static count : " << count << endl;
 }
+
 
 int main(){
     c_2d a(10, 20);
@@ -163,10 +167,11 @@ int main(){
     fc.dump();
 
     cout << "----- static member & function -----" << endl;
-    s_class::show_count();                  // when you make instance with "for" loop, its behavior is strange due to the destructor?
+    s_class::show_count();                  
     s_class ins1;
     s_class::show_count();
     s_class ins2;
     s_class::show_count();
+
 }
 
