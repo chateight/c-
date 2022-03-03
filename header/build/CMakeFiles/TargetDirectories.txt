@@ -1,0 +1,3 @@
+/Users/usamiryuuichi/github/c++/header/build/CMakeFiles/main.dir
+/Users/usamiryuuichi/github/c++/header/build/CMakeFiles/edit_cache.dir
+/Users/usamiryuuichi/github/c++/header/build/CMakeFiles/rebuild_cache.dir
