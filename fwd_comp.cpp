@@ -50,7 +50,7 @@ class inline_s{
     int i;
 
 public:
-    inline inline_s();                      // "inline" instructs to deploy the result of mini function into the called code
+    inline inline_s();                      // "inline" instructs to deploy the result of mini function into the called code depending on the complexity of the code
 
     void set_i(int i){
         this -> i = i;
@@ -62,6 +62,42 @@ public:
 
 void inline_s::show() const{
     cout << i << endl;
+}
+
+// name space
+namespace a{
+    int i = 67;
+
+    void show(){
+        cout << "@namespace a, int i = " << i << endl;
+    }
+}
+
+namespace b{
+    int i = 49;
+
+    void show(){
+        cout << "@namespace b, int i = " << i << endl;
+    }
+}
+
+// class for macro function
+class macro{
+    int a;
+    int b;
+
+public:
+void add(int a, int b);
+void sub(int a, int b);
+
+};
+
+void add(int a, int b){
+    cout << "add : " << a+b << endl;
+}
+
+void sub(int a, int b){
+    cout << "sub : " << a-b << endl;
 }
 
 
@@ -89,7 +125,39 @@ int main(){
     i_i.show();
     i_i.set_i(21);
     i_i.show();
+
+    // namespace
+    cout << "----- name space -----" << endl;
+    {
+        using namespace a;
+        show();                             // if there is no "using namespace", you need to define namespace like "a::show()"
+    }
+    {
+        using namespace b;
+        show();
+    }
+
+    // pre processor
+    cout << "----- pre processor -----" << endl;
+    #define hoge
+    #if defined(hoge)                       // "#ifdef hoge" has same meaning in this case 
+        cout << "true" << endl;
+    #else
+        cout << "false" << endl;
+    #endif
+
+    // include gurard
+    #ifndef unique_header
+    #define unique_header
+    #endif
+
+    // using macro
+    cout << "----- using macro -----" << endl;
+    add(10, 20);
+    #define add sub
+    add(30, 21);
 }                                           // destructor for the "sc-i0" is called at the end of the "main" brace 
+
 
 // forward declaration continued
 int sum(int a, int b){          // definition
