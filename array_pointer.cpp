@@ -11,24 +11,37 @@ void sum(int array[], int len){
     cout << sum << endl;
 }
 
+// array reverse
+int* reverse(int array[5], int len){
+    int array_r[5];                     // reverse work array
+    int* ret = &array[0];               // set the pointer to the argument array
+    int* ptr = array_r;                 // set the pointer of the reverse work array
+    for (int i = 0; i < len; ++i){      // reverse copy to the reversework
+        ptr[i] = ret[len - 1 -i];
+    }
+
+    for (int i = 0; i < len; ++i){      // set to the argument array
+        ret[i] = ptr[i];
+    } 
+    return ret;
+}
+
+
 int main(){
     //
     // implicit conversion to the pointer
     cout << "----- implicit to the pointer value of the array -----" << endl;
     int array[] = {0, 1, 2, 3, 4, 5};   //int array has four bytes elements
-
-    int* ptr = &array[0];       // "&array[0]"" is same as "array"
+    int* ptr = &array[0];               // "&array[0]"" is same as "array"
 
     cout << "top adress of the array : " << ptr << endl;
 
-    ptr = array;
+    ptr = array;                    // implicit conversion
 
     cout << "to get implicit address : " << ptr << endl;
-    //
-    // next address
-    const char* p_str = "abcde";
+    const char* p_str = "abcde";    // pointer as a "char*"
 
-    cout << *(ptr + 1) << endl;     // access to the array[1], though the element size is four bytes
+    cout << *(ptr + 1) << endl;     // access to the array[1]
     cout << ptr[1] << endl;         // ptr[1] has the same meaning
 
     cout << "to get array string char from the pointer" << endl;
@@ -54,5 +67,13 @@ int main(){
 
     for (int v : p_ref){
         cout << v << endl;
+    }
+    //
+    //
+    cout << "----- reverse the array -----" << endl;
+    int r_array[5] = {5, 4, 3, 2, 1};
+    reverse(r_array, 5);
+    for (int i = 0; i < 5; ++i){
+        cout << r_array[i] << endl;
     }
 }
