@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 
 using namespace std;
 
@@ -11,10 +12,10 @@ void sum(int array[], int len){
     cout << sum << endl;
 }
 
-// array reverse
-int* reverse(int array[5], int len){
-    int array_r[5];                     // reverse work array
-    int* ret = &array[0];               // set the pointer to the argument array
+// reverse the array
+int* reverse(int array[10], int len){
+    int array_r[10];                    // reverse work array larger size than the argument array
+    int* ret = array;                   // set the pointer to the argument array
     int* ptr = array_r;                 // set the pointer of the reverse work array
     for (int i = 0; i < len; ++i){      // reverse copy to the reversework
         ptr[i] = ret[len - 1 -i];
@@ -23,6 +24,12 @@ int* reverse(int array[5], int len){
     for (int i = 0; i < len; ++i){      // set to the argument array
         ret[i] = ptr[i];
     } 
+    /*    
+    std::array<int, 3> arr1{ 1, 2, 3 };
+    std::array<int, 3> arr2{ 4, 5, 6 };
+
+    arr1.swap(arr2);            // using container class is easier for swap operation
+    */
     return ret;
 }
 
@@ -69,7 +76,7 @@ int main(){
         cout << v << endl;
     }
     //
-    //
+    // use an array as an arugment
     cout << "----- reverse the array -----" << endl;
     int r_array[5] = {5, 4, 3, 2, 1};
     reverse(r_array, 5);
