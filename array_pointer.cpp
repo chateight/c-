@@ -1,5 +1,5 @@
 #include <iostream>
-#include <array>
+#include <vector>
 
 using namespace std;
 
@@ -82,5 +82,30 @@ int main(){
     reverse(r_array, 5);
     for (int i = 0; i < 5; ++i){
         cout << r_array[i] << endl;
+    }
+    //
+    //　dynamic array(container class : more abstruct and safer than primitive array)  
+    cout << "----- dynamic array(vector) -----" << endl;
+    vector<int> empty;
+    cout << "empty size : " << empty.size() <<endl;
+
+    vector<int> v_array = {20, 10, 50, 70, 15};
+    cout << "v_array size : "<< v_array.size() << endl;
+
+    for (int ele : v_array){
+        cout << "element : " << ele << endl;
+    }
+
+    empty.push_back(21);
+    empty.push_back(18);
+
+    for (int ele : empty){
+        cout << "empty element_push : " << ele << endl;
+    }
+
+    empty.pop_back();
+
+    for (int ele : empty){
+        cout << "empty element_pop : " << ele << endl;
     }
 }
