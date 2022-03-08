@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using namespace std;        // only for convenience, not to use in actual case
 
 // argument using array
 void sum(int array[], int len){
@@ -12,7 +12,7 @@ void sum(int array[], int len){
     cout << sum << endl;
 }
 
-// reverse the array
+// reverse the array(it looks legacy way)
 int* reverse(int array[10], int len){
     int array_r[10];                    // reverse work array larger size than the argument array
     int* ret = array;                   // set the pointer to the argument array
@@ -28,16 +28,35 @@ int* reverse(int array[10], int len){
     std::array<int, 3> arr1{ 1, 2, 3 };
     std::array<int, 3> arr2{ 4, 5, 6 };
 
-    arr1.swap(arr2);            // using container class is easier for swap operation
+    arr1.swap(arr2);            // using container class is easier, even in case of swap operation
     */
     return ret;
 }
 
+// dynamic object allocation
+class d_alloc{
+    float width;
+    float height;
+
+public:
+    explicit d_alloc(float width, float height);
+    float area() const;
+};
+
+d_alloc::d_alloc(float width, float height)
+    : height(height), width(width)
+{
+}
+
+float d_alloc::area() const
+{
+    return height*width/2;
+}
 
 int main(){
     //
     // implicit conversion to the pointer
-    cout << "----- implicit to the pointer value of the array -----" << endl;
+    cout << "----- implicit pointer value of the array -----" << endl;
     int array[] = {0, 1, 2, 3, 4, 5};   //int array has four bytes elements
     int* ptr = &array[0];               // "&array[0]"" is same as "array"
 
@@ -108,4 +127,11 @@ int main(){
     for (int ele : empty){
         cout << "empty element_pop : " << ele << endl;
     }
+    //
+    // dynamic object allocation( to control the life time, but need to destruct by yourself)
+    cout << "----- dynamic allocation of the class instance -----" << endl;
+    d_alloc* da = new d_alloc{10.0f, 7.0f};             // allocate class instance as a dynamic resource pointer
+    cout << "area : "<< da -> area() << endl;
+    delete da;                                          // to avoid memory leak, don't forget to release the allocated resource(class object)
+
 }
