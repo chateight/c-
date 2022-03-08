@@ -84,7 +84,7 @@ int main(){
         cout << r_array[i] << endl;
     }
     //
-    //　dynamic array(container class : more abstruct and safer than primitive array)  
+    //　dynamic array(container class : more abstract and safer than primitive array)  
     cout << "----- dynamic array(vector) -----" << endl;
     vector<int> empty;
     cout << "empty size : " << empty.size() <<endl;
