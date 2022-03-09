@@ -181,6 +181,6 @@ int main(){
     c_move b_m{std::move(a_m)};                 // area owner change to b_m from a_m
 
     cout << "land address of the b_m : "<< b_m.land() << endl;
-    cout << "land area of the a_m after move " << a_m.land() << endl;
+    cout << "land address of the a_m after move " << a_m.land() << endl;
 
 }
