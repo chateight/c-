@@ -55,13 +55,31 @@ float d_alloc::area() const
 
 // type deduction
 int& ret_r(int& i_r){       // return the reference accepted as an argument
-    return i_r;
+    return i_r;             // if you return the reference to the local variable, it causes severe problem since it would be destroyed after the last brace(life time issue)
 }
 
+// move construtor : main purpose is to use hardware resources effectively
+class c_move{
+    int* m_land;
 
-int& funtion(){
-    int value = 20;
-    return value;
+public:
+    explicit c_move(std::size_t size)
+        : m_land{new int[size]} {}
+
+    ~c_move() {
+        cout << "destructor is called" << endl;
+        delete [] m_land; 
+    }
+
+    c_move(c_move&& other);
+
+    int* land() const {return m_land;}
+};
+
+c_move::c_move(c_move&& other)
+    : m_land{other.m_land}          // copy the area pointer
+{
+    other.m_land = nullptr;         // set to null for the original pointer
 }
 
 
@@ -150,6 +168,19 @@ int main(){
     int i_r = 87;
     auto& j_r = ret_r(i_r);                 // type dudcution should be defined as a reference
     j_r = 65;
-    cout << "reference change the value : " << i_r << endl;
+    cout << "change the value of the reference : " << i_r << endl;
+    //
+    // right hand side value reference
+
+    //
+    // move constructor(used for resource reduction)
+    cout << "----- move constructor -----" << endl;
+    c_move a_m{100};
+    cout << "land address of the a_m : "<< a_m.land() << endl;
+
+    c_move b_m{std::move(a_m)};                 // area owner change to b_m from a_m
+
+    cout << "land address of the b_m : "<< b_m.land() << endl;
+    cout << "land area of the a_m after move " << a_m.land() << endl;
 
 }

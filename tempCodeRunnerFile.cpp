@@ -1,45 +1,38 @@
 #include <iostream>
+#include <string>
+#include <utility>
 
-class A
+class person
 {
     std::string m_name;
-    int m_value;
+    int m_age;
+    person(int age) : m_age{ age } {}
 
 public:
-    explicit A(std::string name, int value);
-    explicit A(std::string name);
-    A(); // デフォルトコンストラクター
-    void show() const;
+    person() : person{ -1 } {}
+    person(std::string name, int age)
+        : m_name{ name }, m_age{ age } {}
+
+    person(person&& ohter); // ムーブコンストラクター
+
+    const std::string& name() const { return m_name; }
+    int age() const { return m_age; }
 };
 
-A::A(std::string name, int value) : m_name(name), m_value(value)
+// ムーブコンストラクター
+person::person(person&& other)
+    : m_name( other.m_name ), m_age{ other.m_age }
 {
-}
-
-A::A(std::string name) : A(name, -2)
-{
-}
-
-A::A() : A("default")
-{
-}
-
-void A::show() const
-{
-    std::cout << m_name << " " << m_value << std::endl;
+    std::cout << "ムーブコンストラクター呼び出し" << std::endl;
 }
 
 int main()
 {
-    A a[4] =
-    {
-        A{"first", 42}, // 1つ目のコンストラクター呼び出し
-        A{"second"}, // 2つ目のコンストラクター呼び出し
-        // 3つ目以降はデフォルトコンストラクターが自動で呼び出される
-    };
+    person alice{ "alice", 15 };
 
-    a[0].show();
-    a[1].show();
-    a[2].show();
-    a[3].show();
+    // ムーブコンストラクターで初期化
+    person mo{ std::move(alice) };
+
+    std::cout << mo.name() << std::endl;
+    std::cout << mo.age() << std::endl;
 }
