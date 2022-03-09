@@ -53,6 +53,18 @@ float d_alloc::area() const
     return height*width/2;
 }
 
+// type deduction
+int& ret_r(int& i_r){       // return the reference accepted as an argument
+    return i_r;
+}
+
+
+int& funtion(){
+    int value = 20;
+    return value;
+}
+
+
 int main(){
     //
     // implicit conversion to the pointer
@@ -133,5 +145,11 @@ int main(){
     d_alloc* da = new d_alloc{10.0f, 7.0f};             // allocate class instance as a dynamic resource pointer
     cout << "area : "<< da -> area() << endl;
     delete da;                                          // to avoid memory leak, don't forget to release the allocated resource(class object)
+    //
+    // type deduction for the reference
+    int i_r = 87;
+    auto& j_r = ret_r(i_r);                 // type dudcution should be defined as a reference
+    j_r = 65;
+    cout << "reference change the value : " << i_r << endl;
 
 }
