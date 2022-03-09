@@ -178,7 +178,7 @@ int main(){
     c_move a_m{100};
     cout << "land address of the a_m : "<< a_m.land() << endl;
 
-    c_move b_m{std::move(a_m)};             // area owner change to b_m from a_m, "std::move" makes right hand side value to left hand side
+    c_move b_m{std::move(a_m)};             // area owner change to b_m from a_m, "std::move" makes left hand side value to right hand side
 
     cout << "land address of the b_m : "<< b_m.land() << endl;
     cout << "land address of the a_m after move " << a_m.land() << endl;
