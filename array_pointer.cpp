@@ -82,6 +82,15 @@ c_move::c_move(c_move&& other)
     other.m_land = nullptr;         // set to null for the original pointer
 }
 
+// func pointer(to prepare two kind of functions)
+int f_mul(int a, int b){
+    return a*b;
+}
+
+int f_add(int a, int b){
+    return a+b;
+}
+
 
 int main(){
     //
@@ -182,5 +191,14 @@ int main(){
 
     cout << "land address of the b_m : "<< b_m.land() << endl;
     cout << "land address of the a_m after move " << a_m.land() << endl;
+
+    //
+    // functionn pointer(dynamically change the called function)
+    cout << "----- function pointer -----" << endl;
+    int (*func_ptr)(int, int) = f_mul;
+    cout << "f_mul call : " << func_ptr(21,34) << endl;
+
+    func_ptr = f_add;
+    cout << "f_add call : " << func_ptr(21,34) << endl;
 
 }
