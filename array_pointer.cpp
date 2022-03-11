@@ -91,6 +91,28 @@ int f_add(int a, int b){
     return a+b;
 }
 
+//
+// capture in delta expression
+class delta{
+    int a = 200;
+
+    public: 
+    
+    void show(int i){
+        [this](int j){                  // capture the "this" pointer
+            cout << "member(a) : " << a << ", argument : " << j << endl;
+            a = j;                      // can chage the member variables    
+        }(i);
+    }
+
+    void show_1(int i){                 // capture the instance of "this"
+        [*this](int j) mutable {
+            a = j;                      // change the copied instance, not original one
+            cout << "\"*this\" copy the instance member(a) : " << a << endl;
+        }(i);
+    }
+};
+
 
 int main(){
     //
@@ -201,4 +223,11 @@ int main(){
     func_ptr = f_add;
     cout << "f_add call : " << func_ptr(21,34) << endl;
 
+    //
+    // capture in delta expression
+    cout << "----- capture using \"this\" pointer -----" << endl;
+    delta d;
+    d.show(43);
+    d.show_1(32);
+    d.show(38);
 }
