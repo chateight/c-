@@ -72,8 +72,9 @@ class p_class_base{
 public:
     void prn(string str);
 };
+
 void p_class_base::prn(string str){
-    this-> str = str;           // set augment "str" to the local string "str"
+    this->str = str;           // set augment "str" to the local string "str"
     cout << "accepted string : " << this->str << endl;  // "this" means class p_class_base pointer
 }
 
@@ -90,7 +91,7 @@ class vector3d{
 public:
     vector3d();
     explicit vector3d(float x, float y, float z);
-    friend vector3d add(const vector3d& lhs, const vector3d& rhs);      // friend function
+    friend vector3d add(const vector3d& lhs, const vector3d& rhs);      // to define friend function
 
     void dump() const; 
 };
@@ -107,8 +108,8 @@ vector3d::vector3d(float x, float y, float z)
 
 vector3d add(const vector3d& lhs, const vector3d& rhs){     // description of the friend function which is an external function, not a member function
     vector3d result;                                        // it accepts pointer of the class or refernce, since it is not a member of the class
-    result.x = lhs.x + rhs.x;
-    result.y = lhs.y + rhs.y;
+    result.x = lhs.x + rhs.x;                               // "const" means internal operation does not change the status of the reference
+    result.y = lhs.y + rhs.y;                               // in most cases, you should use "const" description for reference usage
     result.z = lhs.z + rhs.z;
     return result;
 }
