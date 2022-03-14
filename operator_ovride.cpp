@@ -17,11 +17,11 @@ public:
 };
 
 Float Float::operator+(const Float& rf) const{
-    return Float(val + rf.val);
+    return Float{val + rf.val};
 }
 
 Float Float::operator-(const Float& rf) const{
-    return Float(val - rf.val);
+    return Float{val - rf.val};
 }
 
 Float Float::operator+() const{
@@ -29,7 +29,7 @@ Float Float::operator+() const{
 }
 
 Float Float::operator-() const{
-    return Float(-val);
+    return Float{-val};
 }
 
 void Float::show() const{
