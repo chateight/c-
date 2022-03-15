@@ -44,8 +44,13 @@ void Float::show() const{
 //
 // std::unique_ptr(automatically release the acquired resources by the destructor)
 class stdrd{
+    std::string str = "initialized to \"stdrd string\"";
 
 public:
+    void show(){
+        std::cout << str << std::endl;
+    }
+
     stdrd(){
         std::cout << " constructor was called" << std::endl;
     }
@@ -86,6 +91,11 @@ int main(){
         std::cout << "before func call" << std::endl;
         ptr = allocate();
         std::cout << "after func call" << std::endl;
+
+        ptr -> show();                              // call by pointer
+
+        stdrd& ptr_r = *ptr;
+        ptr_r.show();                               // call by reference
 
         const std::type_info& id = typeid(ptr);     // to get class name of the "ptr" instance
         int stat;
