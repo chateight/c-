@@ -59,7 +59,7 @@ std::unique_ptr<stdrd> allocate(){
     std::cout << " allocated" << std::endl;
     std::unique_ptr<stdrd> ptr{new stdrd{}};
 
-    return std::move(ptr);                      // "ptr" return extends the lifetime of "ptr"
+    return std::move(ptr);                      // "ptr" owner is changed, "ptr" return extends the lifetime of "ptr"
 }
 
 
@@ -91,7 +91,7 @@ int main(){
         int stat;
         char *name = abi::__cxa_demangle(id.name(),0,0,&stat);
         if(stat==0) {
-            std::cout << name << std::endl;
+            std::cout << name << std::endl;         
         }
     
     }
