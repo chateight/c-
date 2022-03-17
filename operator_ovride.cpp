@@ -41,6 +41,43 @@ void Float::show() const{
     std::cout << val << std::endl;
 }
 
+
+// basic operator overload(using friend function)
+class Float_f{
+    float val_f;
+
+public:
+    explicit Float_f(float val) : val_f(val){}
+
+    friend Float_f operator+(const Float_f&, float);        // friend function definition
+    friend Float_f operator-(const Float_f&, float);
+
+    friend Float_f operator+(float, const Float_f&);        // arugments reverse (lhs & rhs)
+    friend Float_f operator-(float, const Float_f&);
+
+    void show_f() const;
+};
+
+Float_f operator+(const Float_f& lhs, float rhs){
+    return Float_f{lhs.val_f + rhs};
+}
+
+Float_f operator-(const Float_f& lhs, float rhs){
+    return Float_f{lhs.val_f - rhs};
+}
+
+Float_f operator+(float lhs, const Float_f& rhs){
+    return Float_f{lhs + rhs.val_f};
+}
+
+Float_f operator-(float lhs, const Float_f& rhs){
+    return Float_f{lhs - rhs.val_f};
+}
+
+void Float_f::show_f() const{
+    std::cout << val_f << std::endl;
+}
+
 //
 // std::unique_ptr(automatically release the acquired resources by the destructor)
 class stdrd{
@@ -85,6 +122,14 @@ int main(){
     auto q = -x;
     q.show();
 
+    std::cout << "----- using friend function for the operator override -----" << std::endl;
+
+    Float_f seven(7.1f);
+
+    Float_f result_f = 9.3f - seven + 4.5f;
+
+    result_f.show_f();
+    
     {
         std::cout << "----- std::unique_ptr -----" << std::endl;
         std::unique_ptr<stdrd> ptr;
@@ -103,7 +148,9 @@ int main(){
         if(stat==0) {
             std::cout << name << std::endl;         
         }
-    
     }
     std::cout << "after the scope" << std::endl;
+    //
+    // function object(to be continued)
+
 }
