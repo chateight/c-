@@ -12,11 +12,14 @@ class Float{
 public:
     Float(float val) : val(val){}
 
-    Float operator+(const Float& rf) const;
+    Float operator+(const Float& rf) const;     // add & substruct operator
     Float operator-(const Float& rf) const;
 
-    Float operator+() const;        // return the sign of the variable
+    Float operator+() const;        // set the sign of the variable
     Float operator-() const;
+
+    Float operator*=(const Float& rf);       // compound assignment operator
+    Float operator/=(const Float& rf);
 
     void show() const;
 };
@@ -37,12 +40,22 @@ Float Float::operator-() const{
     return Float{-val};
 }
 
+Float Float::operator*=(const Float& rf){      
+    val *= rf.val;
+    return *this;
+}
+
+Float Float::operator/=(const Float& rf){
+    val /= rf.val;
+    return *this;
+}
+
 void Float::show() const{
     std::cout << val << std::endl;
 }
 
 
-// basic operator overload(using friend function)
+// basic operator overload(using friend function to use rhs value)
 class Float_f{
     float val_f;
 
@@ -109,6 +122,7 @@ int main(){
     std::cout << "----- basic operator override(floating plus & minus) -----" << std::endl;
     Float x = 7.34f;
     Float y = 5.17f;
+    Float z = 0.1f;
 
     auto v = x + y;
     v.show();
@@ -121,6 +135,13 @@ int main(){
 
     auto q = -x;
     q.show();
+
+    z *= y;
+    z.show();
+
+    z /= y;
+    z.show();
+
 
     std::cout << "----- using friend function for the operator override -----" << std::endl;
 
