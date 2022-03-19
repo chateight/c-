@@ -117,6 +117,33 @@ std::unique_ptr<stdrd> allocate(){
     return std::move(ptr);                      // "ptr" owner is changed, "ptr" return extends the lifetime of "ptr"
 }
 
+//
+// conversion function(to avoid implicit conversion)
+class c_a{
+public:
+    operator int() const { return 64; }
+};
+
+class c_b{
+public:
+    explicit operator int() const { return 2;}
+};
+
+//
+// class cast for the conversion function
+class cc_a{
+
+public:
+    void foo(){ std::cout << "class foo() " << std::endl;}
+};
+
+class cc_b{
+    cc_a ia;
+
+public:
+    operator const cc_a&() { return ia; }
+};
+
 
 int main(){
     std::cout << "----- basic operator override(floating plus & minus) -----" << std::endl;
@@ -173,5 +200,26 @@ int main(){
     std::cout << "after the scope" << std::endl;
     //
     // function object(to be continued)
+
+    //
+    // conversion function
+    std::cout << "----- explicit converson function -----" << std::endl;
+    c_a a;
+    int ib = a;         // "64"
+    char ca = a;        // "@"
+
+    c_b b;
+    // int ib = b;      // error due to the inhibition of the implicit conversion
+    // char cb = b;     // same as above
+
+    int j{b};           // "2"
+    int d = static_cast<int>(b);    // "2"
+
+    std::cout << ib << ", " << ca << ", " << j << ", " << d << std::endl;
+    //
+    // class cast for the conversion function
+    std::cout << "----- class cast for the conversion function -----" << std::endl;
+    cc_a cc_ib;
+    static_cast<cc_a>(cc_ib).foo();
 
 }
