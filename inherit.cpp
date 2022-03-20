@@ -1,12 +1,12 @@
 #include <iostream>
 
 //
-// "protected" : access protection ( same as other languages i.e. Java C#)
+// "protected" : access protection ( same as other languages i.e. Java & C#)
 class base{
 
     int var_p{30};  // private variable
 
-protected:          // "proteted" is applicable to functions also
+protected:          // "proteted" is also applicable to functions
     int var{10};
 
 public:
@@ -20,7 +20,7 @@ base::base(int i){
 
 class inherit : public base{
 public:
-    explicit inherit(int i) : base{i} {}         // make constructor initializing the base class
+    explicit inherit(int i) : base{i} {}         // make inherit class constructor calling the base class constructor
     void show();
 };
 
@@ -38,6 +38,27 @@ void inherit_p::show(){
     std::cout << " access from inherit_p class : " << var << std::endl;     // accessible only public function
 }
 
+//
+// derived class can make reference or pointer of th base class
+class base_r{
+
+public:
+    void base_show();
+};
+
+void base_r::base_show(){
+    std::cout << "base_show" << std::endl;
+}
+
+class inherit_r : public base_r{
+
+public:
+    void inherit_show();
+};
+
+void inherit_r::inherit_show(){
+    std::cout << "inerit_show" << std::endl;
+}
 
 //
 // main routine
@@ -48,5 +69,20 @@ int main(){
 
     inherit_p inh_p;
     inh_p.show();
+
+    std::cout << "----- inherit class can make base class ref & pointer -----" << std::endl;
+
+    base_r base;
+
+    inherit_r inh_r;
+
+    inh_r.base_show();
+    inh_r.inherit_show();
+
+    base_r* ptr= &inh_r;            // if you change the order of this two lines, it causes error, why?
+    base_r& base_r = inh_r;
+
+    base_r.base_show();
+    ptr -> base_show();
 
 }
