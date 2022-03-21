@@ -43,21 +43,34 @@ void inherit_p::show(){
 class base_r{
 
 public:
-    void base_show();
-};
+    virtual void base_show();
+    virtual ~base_r(){ std::cout << "base_r destructor was called" << std::endl; }                         // virtual distructor is used for inherit class resource release, however it consumne many resource
+};                                              // inherit class empty destructor is automatically defined by compiler
 
 void base_r::base_show(){
-    std::cout << "base_show" << std::endl;
+    std::cout << "base_show()" << std::endl;
 }
 
 class inherit_r : public base_r{
 
 public:
     void inherit_show();
+    void base_show() override;
+    ~inherit_r(){
+        std::cout << " inherit_r destructor was called" << std::endl;
+    }
 };
 
 void inherit_r::inherit_show(){
-    std::cout << "inerit_show" << std::endl;
+    std::cout << "inerit_show()" << std::endl;
+}
+
+void inherit_r::base_show(){
+    std::cout << "inherit base_show()" << std::endl;
+}
+
+base_r* allocate(){
+    return new inherit_r{};
 }
 
 //
@@ -82,7 +95,10 @@ int main(){
     base_r* ptr= &inh_r;            // if you change the order of this two lines, it causes error, why?
     base_r& base_r = inh_r;
 
-    base_r.base_show();
-    ptr -> base_show();
+    base_r.base_show();             // base class reference call inherit class function
+    ptr -> base_r::base_show();     // to call base class function, explicitly denote the base class
+
+    auto r_ptr = allocate();
+    delete r_ptr;
 
 }
