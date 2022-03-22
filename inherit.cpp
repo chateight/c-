@@ -51,7 +51,7 @@ void base_r::base_show(){
     std::cout << "base_show()" << std::endl;
 }
 
-class inherit_r : public base_r{
+class inherit_r : public base_r{                
 
 public:
     void inherit_show();
@@ -74,16 +74,41 @@ base_r* allocate(){
 }
 
 //
+// multiple inheritance (multiple inheritance can be used, but it's an exception)
+class m_base1{
+
+public:
+    void show(){
+        std::cout << "base1 function was called" << std::endl;
+    }
+
+};
+
+class m_base2{
+
+public:
+    void show(){
+        std::cout << "base2 function was called" << std::endl;
+    }
+
+};
+
+class m_inherit: public m_base1, public m_base2{
+
+};
+
+
+//
 // main routine
 int main(){
-    std::cout << "----- protected access protection -----" << std::endl;
+    std::cout << "----- \"protect\" : access protection -----" << std::endl;
     inherit inh(35);
     inh.show();
 
     inherit_p inh_p;
     inh_p.show();
 
-    std::cout << "----- inherit class can make base class ref & pointer -----" << std::endl;
+    std::cout << "----- inherited class can make base class ref & pointer -----" << std::endl;
 
     base_r base;
 
@@ -92,13 +117,18 @@ int main(){
     inh_r.base_show();
     inh_r.inherit_show();
 
-    base_r* ptr= &inh_r;            // if you change the order of this two lines, it causes error, why?
+    base_r* ptr= &inh_r;            // if you change the order of this two lines, it causes an error, why?
     base_r& base_r = inh_r;
 
-    base_r.base_show();             // base class reference call inherit class function
+    base_r.base_show();             // base class reference call override function in the inherited class as a default
     ptr -> base_r::base_show();     // to call base class function, explicitly denote the base class
 
-    auto r_ptr = allocate();
+    auto r_ptr = allocate();        // base class allocated resource which is used in inherited class is released by inhrit destructor
     delete r_ptr;
+
+    std::cout << "----- multiple inheritance -----" << std::endl;
+    m_inherit m_inh;
+    m_inh.m_base1::show();          // if multiple base class have same name of method, you need to explicitly define the class
+    m_inh.m_base2::show();
 
 }
