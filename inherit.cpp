@@ -107,7 +107,7 @@ class v_base{
 
 public:
     explicit v_base(int val){
-        std::cout << "instantiated @ " << val << std::endl;         // "val" is set to the instanciated class (1,2 : first layer, 3 : final layer)
+        std::cout << "instantiated @ " << val << std::endl;         // "val" is set to the instanciated class number (1,2 : first layer, 3 : final layer)
     }
 
     void method_vb(){
@@ -144,6 +144,46 @@ public:
     v_more_inherit() : v_base{3} {}
 
 };
+
+//
+// inhibit inheritances using "final" 
+class f_base{
+
+public:
+    virtual void f_show(){
+        std::cout << "f_base class" << std::endl;
+    }
+
+};
+
+class f_inh : public f_base {
+
+public:
+    void f_show() final {
+        std::cout << "f_inh class" << std::endl;
+    }
+
+    virtual void f_show1() {
+        std::cout << "f_int_v method" << std::endl;
+    }
+
+};
+
+class f_m_inh : public f_inh {
+
+public:
+/*
+    void f_show() override{                             // "final" declarated function is not overrided anymore
+        std::cout << "f_m_inh class" << std::endl;
+    }
+*/
+    void f_show1() final {
+        std::cout << "f_m_int_v method" << std::endl;
+    }
+
+};
+
+
 
 //
 // main routine
@@ -185,9 +225,14 @@ int main(){
     v_m_inh.method_inherit2();
 
     v_inherit1& derive1 = v_m_inh;          // following two method call make same result, since only one base class instance is guranteed by virtual notation
-    derive1.method_vb();
+    derive1.method_vb();                    // interest thing is the value is same as "v_inherit1 this" pointer
 
     v_inherit2& derive2 = v_m_inh;          // if inherit without "virtual", there are different value(instance address)
     derive2.method_vb();
+
+    std::cout << "----- inheritance inhibition using final -----" << std::endl;
+    f_m_inh f_m_ins;
+    f_m_ins.f_show1();
+    f_m_ins.f_base::f_show();
 
 }
