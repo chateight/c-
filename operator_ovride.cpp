@@ -118,7 +118,7 @@ std::unique_ptr<stdrd> allocate(){
 }
 
 //
-// conversion function(to avoid implicit conversion)
+// conversion function(to avoid implicit type conversion)
 class c_a{
 public:
     operator int() const { return 64; }

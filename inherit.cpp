@@ -106,6 +106,10 @@ class m_inherit: public m_base1, public m_base2{
 class v_base{
 
 public:
+    explicit v_base(int val){
+        std::cout << "instantiated @ " << val << std::endl;         // "val" is set to the instanciated class (1,2 : first layer, 3 : final layer)
+    }
+
     void method_vb(){
         std::cout << "base_class:" << this << std::endl;
     }
@@ -115,6 +119,8 @@ public:
 class v_inherit1: virtual public v_base{        // virtual inheritance 
 
 public:
+    v_inherit1() : v_base{1} {}
+
     void method_inherit1(){
         std::cout << "inherit1_class:" << this << std::endl;
     }
@@ -124,6 +130,8 @@ public:
 class v_inherit2: virtual public v_base{
 
 public:
+    v_inherit2() : v_base{2} {}
+
     void method_inherit2(){
         std::cout << "inherit2_class:" << this << std::endl;
     }
@@ -131,6 +139,9 @@ public:
 };
 
 class v_more_inherit: public v_inherit1, public v_inherit2{
+
+public:
+    v_more_inherit() : v_base{3} {}
 
 };
 
@@ -164,16 +175,16 @@ int main(){
 
     std::cout << "----- multiple inheritance -----" << std::endl;
     m_inherit m_inh;
-    m_inh.m_base1::show();          // if multiple base class have same name of method, you need to explicitly define the class
+    m_inh.m_base1::show();          // if multiple base class have same name of method, you need to explicitly define the class name
     m_inh.m_base2::show();
     m_inh.log();
 
-    std::cout << "----- virtual base class for multiple inheritance, but only one class is guranteed -----" << std::endl;
+    std::cout << "----- virtual base class for multiple inheritance, only one class instance is guranteed -----" << std::endl;
     v_more_inherit v_m_inh;
     v_m_inh.method_inherit1();
     v_m_inh.method_inherit2();
 
-    v_inherit1& derive1 = v_m_inh;          // following two method call make same result, since only one base class is valid by virtual notation
+    v_inherit1& derive1 = v_m_inh;          // following two method call make same result, since only one base class instance is guranteed by virtual notation
     derive1.method_vb();
 
     v_inherit2& derive2 = v_m_inh;          // if inherit without "virtual", there are different value(instance address)
