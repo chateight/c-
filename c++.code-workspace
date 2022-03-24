@@ -85,7 +85,8 @@
 			"*.tcc": "cpp",
 			"memory_resource": "cpp",
 			"stop_token": "cpp",
-			"cinttypes": "cpp"
+			"cinttypes": "cpp",
+			"variant": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,
