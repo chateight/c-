@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 //
 // main rooutine from here
@@ -34,6 +35,11 @@ int main(){
     std::cout << "octal & filler : "<< 3577957 << std::endl;
 
     std::cout << std::endl;
+    std::cout << "----- using IO manipulator -----" << std::endl;
+    std::cout << std::scientific << std::setprecision(6) << M_PI << std::endl;
+    std::cout << M_PI << std::endl;                                 // manipulator is available for the succeeding statements
+
+    std::cout << std::endl;
     std::cout << "----- consol input -----" << std::endl;
 
     char buff[256];
@@ -43,7 +49,7 @@ int main(){
             std::cout << "input : " << buff << std::endl;
         }
         else{
-            break;                              // if empty -> break
+            break;                              // if input was empty -> break
         }
     }
 
