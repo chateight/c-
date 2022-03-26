@@ -1,6 +1,50 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <fstream>
+#include <string>
+
+//
+// basic file in out class
+class file_IO{
+
+    std::string file_name = "./io/d_file.txt";
+
+public:
+    void put(std::string str);
+    std::string get();
+
+};
+
+void file_IO::put(std::string str){
+    std::ofstream out;
+    out.open(file_name, std::ios::app); // use append mode
+    if (out.is_open()){                 // file opened?
+        out << str << std::endl;
+        out.close();                        // even if you miss the close call, destructor will release it
+    }
+    else{
+        std::cout << "file open error" << std::endl;
+    }
+    return;
+}
+
+std::string file_IO::get(){
+    std::string str;
+    std::ifstream in{file_name};        // constructor and file open can be excuted in one line
+    if (in.is_open()){
+        while(!in.eof()){                   // read to the end of the file
+            std::string tmp;
+            std::getline(in, tmp);
+            str += tmp;
+        }
+        in.close();
+    }
+    else{    
+        std::cout << "file open error" << std::endl;
+    }
+    return str;
+}
 
 //
 // main rooutine from here
@@ -38,6 +82,8 @@ int main(){
     std::cout << "----- using IO manipulator -----" << std::endl;
     std::cout << std::scientific << std::setprecision(6) << M_PI << std::endl;
     std::cout << M_PI << std::endl;                                 // manipulator is available for the succeeding statements
+    std::cout << std::dec << std::setfill('0') << std::setw(9) << 87543 << std::endl;
+
 
     std::cout << std::endl;
     std::cout << "----- consol input -----" << std::endl;
@@ -53,4 +99,9 @@ int main(){
         }
     }
 
+    std::cout << std::endl;
+    std::cout << "----- basic file r//w -----" << std::endl;
+    file_IO fio;
+    fio.put(" here is a sample of the file read and write");
+    std::cout << fio.get() << std::endl;
 }

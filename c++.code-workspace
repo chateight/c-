@@ -86,7 +86,11 @@
 			"memory_resource": "cpp",
 			"stop_token": "cpp",
 			"cinttypes": "cpp",
-			"variant": "cpp"
+			"variant": "cpp",
+			"codecvt": "cpp",
+			"fstream": "cpp",
+			"iomanip": "cpp",
+			"stack": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,
