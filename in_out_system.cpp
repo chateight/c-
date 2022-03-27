@@ -162,9 +162,11 @@ int main(){
     std::cout << "----- random access from existing file -----" << std::endl;
     std::ifstream in{"./io/d_file.txt"};
     std::string line;
-    in.seekg(in.tellg() + std::streamoff{10});       // set offset of the position cursor
+    in.seekg(in.tellg() + std::streamoff{10});      // set offset of the position cursor
     std::getline(in, line);
     std::cout << std::endl;
     std::cout << "current cursor : " << in.tellg() << " , string : " << line << std::endl;
-    
+    in.seekg(std::ios::beg);                        // reset the cursor to the begin of the file 
+    std::cout << "current cursor : "<< in.tellg() <<std::endl;
+
 }
