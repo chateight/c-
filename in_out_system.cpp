@@ -5,7 +5,7 @@
 #include <string>
 
 //
-// basic file in out class
+// basic file read write class
 class file_IO{
 
     std::string file_name = "./io/d_file.txt";
@@ -24,7 +24,7 @@ void file_IO::put(std::string str){
         out.close();                        // even if you miss the close call, destructor will release it
     }
     else{
-        std::cout << "file open error" << std::endl;
+        std::cout << "t_file open error" << std::endl;
     }
     return;
 }
@@ -38,13 +38,54 @@ std::string file_IO::get(){
             std::getline(in, tmp);
             str += tmp;
         }
-        in.close();
     }
     else{    
-        std::cout << "file open error" << std::endl;
+        std::cout << "t_file open error" << std::endl;
     }
+    in.close();
     return str;
 }
+
+//
+// binary data read/write
+class b_file_IO{
+
+    std::string file_name = "./io/d_file.bin";
+
+public:
+    void put(char* char_s, int len);
+    std::string get();
+
+    int count = 0;      // read char counter
+
+};
+
+void b_file_IO::put(char* str, int len){
+    std::ofstream out{file_name, std::ios::binary};     // use binary mode
+    if (out.is_open()){
+        out.write(str, len);
+        out.close();
+    }
+    else{
+        std::cout << "b_file open error" << std::endl;
+    }
+    return;
+}
+
+std::string b_file_IO::get(){
+    char str[100];
+    std::ifstream in{file_name};        // constructor and file open can be excuted in one line
+    if (in.is_open()){
+        in.read(str, 100);
+        count = in.gcount();            // set the char buffer counter
+    }
+    else{    
+        std::cout << "b_file open error" << std::endl;
+    }
+    in.close();
+    return str;
+}
+
 
 //
 // main rooutine from here
@@ -65,6 +106,7 @@ int main(){
     std::cout.flags(deft);                                          // override flags()
     std::cout << "reset to dafault : " << 4282.98f << std::endl;
     std::cout << 772340 << std::endl;
+
 
     std::cout <<std::endl;
     std::cout.precision(10);                                        
@@ -99,9 +141,20 @@ int main(){
         }
     }
 
+
     std::cout << std::endl;
     std::cout << "----- basic file r//w -----" << std::endl;
     file_IO fio;
     fio.put(" here is a sample of the file read and write");
     std::cout << fio.get() << std::endl;
+
+
+    std::cout << std::endl;
+    std::cout << "----- binary file r//w -----" << std::endl;
+    b_file_IO b_fio;
+    
+    char str[] = {'h','e','r','e',' ','i','s',' ','a',' ','s','a','m','p','l','e',' ','o','f',' ','t','h','e',' ','b','i','n','a','r','y','\0'};
+    b_fio.put(str, sizeof(str));
+    std::cout << b_fio.get() << " , char count : " << b_fio.count << std::endl;
+
 }
