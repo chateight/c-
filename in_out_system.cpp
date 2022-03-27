@@ -157,4 +157,14 @@ int main(){
     b_fio.put(str, sizeof(str));
     std::cout << b_fio.get() << " , char count : " << b_fio.count << std::endl;
 
+
+    std::cout << std::endl;
+    std::cout << "----- random access from existing file -----" << std::endl;
+    std::ifstream in{"./io/d_file.txt"};
+    std::string line;
+    in.seekg(in.tellg() + std::streamoff{10});       // set offset of the position cursor
+    std::getline(in, line);
+    std::cout << std::endl;
+    std::cout << "current cursor : " << in.tellg() << " , string : " << line << std::endl;
+    
 }
