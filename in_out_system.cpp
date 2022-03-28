@@ -38,6 +38,14 @@ std::string file_IO::get(){
             std::getline(in, tmp);
             str += tmp;
         }
+        auto state = in.rdstate();
+        if (state & std::ios::eofbit){
+            std::cout << " reach to the EOF " << std::endl;             // if EOF flag bit on?
+            in.clear();                                                 // "clear()" resets all error flag, argument "std::ios::goodbit" has same meaning
+            state = in.rdstate();
+            std::cout << " clear all error flag : " << state << std::endl;
+            std::cout << std::endl;
+        }
     }
     else{    
         std::cout << "t_file open error" << std::endl;
