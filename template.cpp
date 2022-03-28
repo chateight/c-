@@ -18,7 +18,9 @@ int main()
 {
     S s;
 
-    std::cout << s.foo<int>(5) << std::endl;
-    std::cout << s.foo<float>(53.238f) << std::endl;
+    std::cout << " int : "<< s.foo<int>(5) << std::endl;
+    std::cout << " float : " << s.foo<float>(53.238f) << std::endl;
+    std::cout << " char : " << s.foo<char>('d') << std::endl;
+    std::cout << " string : " << s.foo<std::string>("hello") << std::endl;
 
 }
