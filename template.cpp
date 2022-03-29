@@ -13,7 +13,7 @@ public:
 };
 
 //
-// class temlate
+// class template
 template <typename CT>
 class ct{
 
