@@ -28,6 +28,17 @@ void ct<CT>::ct_f(){
     std::cout << val << std::endl;
 }
 
+template <>                     // explicit specialization for the class
+class ct<void>{
+
+public:
+
+void ct_f(){
+    std::cout << "class template \"void\" (explicit specialization)" << std::endl;
+}
+
+};
+
 //
 // use virtual function in a class template
 class ctv{
@@ -68,6 +79,9 @@ int main()
 
     ct<std::string> tc_s{"bigger"};
     tc_s.ct_f();
+
+    ct<void> tc_v;
+    tc_v.ct_f();
 
     std::cout << std::endl;
     std::cout << "----- using virtual function in a template class -----" <<std::endl;
