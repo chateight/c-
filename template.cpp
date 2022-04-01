@@ -60,6 +60,22 @@ public:
 
 };
 
+
+//
+// class template as a parameter of the function
+template <typename T>
+class SC{
+
+public:
+T val;
+};
+
+template <typename R>
+void show(SC<R> ct){
+    std::cout << "sqr = " << (ct.val)*(ct.val) << std::endl;
+}
+
+
 //
 // main routine from here
 int main()
@@ -71,6 +87,8 @@ int main()
     std::cout << " float : " << s.foo<float>(53.238f) << std::endl;
     std::cout << " char : " << s.foo<char>('d') << std::endl;
     std::cout << " string : " << s.foo<std::string>("hello") << std::endl;
+
+    std::cout << " string : " << s.foo("hello, using TYPE DEDUCTION ") << std::endl;
 
     std::cout << std::endl;
     std::cout << "----- template class -----" <<std::endl;
@@ -89,5 +107,10 @@ int main()
     vin.show(28);
     vin.ctv::show(21);
     static_cast<ctv&>(vin).show(27);        // call via virtual function( result is same as above )
+
+    std::cout << std::endl;
+    std::cout << "----- type deduction (class template as a parameter of the function) -----" <<std::endl;
+    SC<int> ctp{10};
+    show(ctp);
 
 }
