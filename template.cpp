@@ -75,6 +75,18 @@ void show(SC<R> ct){
     std::cout << "sqr = " << (ct.val)*(ct.val) << std::endl;
 }
 
+//
+// forwarding reference (righthand ref & template)
+template <typename T>
+void foober(T& val){
+    std::cout << " lefthand reference : " << val << std::endl;
+}
+
+template <typename T>
+void foober(T&& val){
+    std::cout << " righthand reference : " << val << std::endl;
+}
+
 
 //
 // main routine from here
@@ -112,5 +124,12 @@ int main()
     std::cout << "----- type deduction (class template as a parameter of the function) -----" <<std::endl;
     SC<int> ctp{10};
     show(ctp);
+
+    std::cout << std::endl;
+    std::cout << "----- forwarding reference (righthand ref & template) -----" <<std::endl;
+    int fr = 10;
+
+    foober(fr);
+    foober(52);
 
 }
