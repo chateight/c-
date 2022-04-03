@@ -87,6 +87,14 @@ void foober(T&& val){
     std::cout << " righthand reference : " << val << std::endl;
 }
 
+//
+// call by reference(with constant)
+template < typename TR>
+void footr(const TR& val){
+    std::cout << val << std::endl;
+
+}
+
 
 //
 // main routine from here
@@ -131,5 +139,12 @@ int main()
 
     foober(fr);
     foober(52);
+
+    std::cout << std::endl;
+    std::cout << "----- call by reference (with const) -----" <<std::endl;
+    const int crf = 29;
+    footr(crf);         // type deduction is applicable
+    footr<int>(crf);    // same as above
+    //footr<int&>(crf); -> error
 
 }
