@@ -191,7 +191,7 @@ int main()
     //footr<int&>(crf); -> error
 
     std::cout << std::endl;
-    std::cout << "----- typename definition -----" <<std::endl;
+    std::cout << "----- typename definition -> alias(1) -----" <<std::endl;
 
     std::vector<int> v = {0, 3, 5, 7};
     std::vector<int>::reference r = func(v, 1);
@@ -199,7 +199,7 @@ int main()
 
 
     std::cout << std::endl;
-    std::cout << "----- using alias to define the type explicitly -----" <<std::endl;
+    std::cout << "----- using alias to define the type explicitly(2) -----" <<std::endl;
 
     Alias<int> a{42};
     std::cout << "using alias : " << get(a) << std::endl;
