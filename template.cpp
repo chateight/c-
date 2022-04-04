@@ -95,6 +95,25 @@ void footr(const TR& val){
 
 }
 
+//
+// alias template for dependent name
+struct Vector{
+    using value_type = float;
+
+    float x;
+    float y;
+
+};
+
+template <typename Vector>
+using vec_ref = typename Vector::value_type;
+//typename Vector::value_type       // alias definition elminate the need of this line
+
+vec_ref<Vector> product(const Vector& lh, const Vector& rh){
+
+    return lh.x*rh.x + lh.y*rh.y;
+}
+
 
 //
 // main routine from here
@@ -146,5 +165,12 @@ int main()
     footr(crf);         // type deduction is applicable
     footr<int>(crf);    // same as above
     //footr<int&>(crf); -> error
+
+    std::cout << std::endl;
+    std::cout << "----- using alias to define the type explicitly -----" <<std::endl;
+    Vector a{10, 20};
+    Vector b{30, 50};
+
+    std::cout << product(a, b) << std::endl;
 
 }
