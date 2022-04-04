@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 //
 // simple function template
@@ -96,22 +97,45 @@ void footr(const TR& val){
 }
 
 //
-// alias template for dependent name
-struct Vector{
-    using value_type = float;
+//  alias template for dependent name(1)
+template <typename T>
+using vec_ref = typename std::vector<T>::reference;
 
-    float x;
-    float y;
+template <typename T> 
+//typename std::vector<T>::reference 
+vec_ref<T> func(std::vector<T>& v, std::size_t i){
 
+    return v[i];
+}
+
+template <typename T>
+typename std::size_t 
+size(const std::vector<T>& v){
+
+    return v.size();
+}
+
+//
+//  alias template for dependent name(2)
+template <typename T>
+class Alias
+{
+    T value;
+
+public:
+    using value_type = T;
+    explicit Alias(T value) : value(value) {}
+
+    T& get_value() { return value; }
 };
 
-template <typename Vector>
-using vec_ref = typename Vector::value_type;
-//typename Vector::value_type       // alias definition elminate the need of this line
+template <typename T>
+using A_value = typename Alias<T>::value_type;
 
-vec_ref<Vector> product(const Vector& lh, const Vector& rh){
-
-    return lh.x*rh.x + lh.y*rh.y;
+template <typename T>
+A_value<T>& get(Alias<T>& a)
+{
+    return a.get_value();
 }
 
 
@@ -167,10 +191,17 @@ int main()
     //footr<int&>(crf); -> error
 
     std::cout << std::endl;
-    std::cout << "----- using alias to define the type explicitly -----" <<std::endl;
-    Vector a{10, 20};
-    Vector b{30, 50};
+    std::cout << "----- typename definition -----" <<std::endl;
 
-    std::cout << product(a, b) << std::endl;
+    std::vector<int> v = {0, 3, 5, 7};
+    std::vector<int>::reference r = func(v, 1);
+    std::cout << "vector element : " << r << std::endl;
+
+
+    std::cout << std::endl;
+    std::cout << "----- using alias to define the type explicitly -----" <<std::endl;
+
+    Alias<int> a{42};
+    std::cout << "using alias : " << get(a) << std::endl;
 
 }
