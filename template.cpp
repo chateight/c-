@@ -102,7 +102,7 @@ template <typename T>
 using vec_ref = typename std::vector<T>::reference;
 
 template <typename T> 
-//typename std::vector<T>::reference 
+//typename std::vector<T>::reference                // when alias is defined, typename definition is not required
 vec_ref<T> func(std::vector<T>& v, std::size_t i){
 
     return v[i];
