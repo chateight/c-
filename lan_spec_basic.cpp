@@ -165,5 +165,5 @@ int main(){
     };
 
     int ret = l_e(12);
-    std::cout << " return value : "<< ret << std::endl;
+    std::cout << " return value : " << ret << std::endl;
 }

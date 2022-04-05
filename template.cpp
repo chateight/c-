@@ -97,9 +97,9 @@ void footr(const TR& val){
 }
 
 //
-//  alias template for dependent name(1)
+// alias template for dependent name(1)
 template <typename T>
-using vec_ref = typename std::vector<T>::reference;
+using vec_ref = typename std::vector<T>::reference; // alias definition
 
 template <typename T> 
 //typename std::vector<T>::reference                // when alias is defined, typename definition is not required
@@ -116,7 +116,7 @@ size(const std::vector<T>& v){
 }
 
 //
-//  alias template for dependent name(2)
+// alias template for dependent name(2)
 template <typename T>
 class Alias
 {
