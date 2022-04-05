@@ -1,12 +1,12 @@
 #include <iostream>
 
-template <class... Args>
+template <typename... Args>
 void func2()
 {
     std::cout << "no arg func is called\n" << std::endl;
 }
 
-template <class Head, class... Body>
+template <typename Head, typename... Body>
 void func2(Head head, Body... body)
 {
     std::cout << head << "\t" << sizeof...(body) << "\n";
