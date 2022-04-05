@@ -166,4 +166,15 @@ int main(){
 
     int ret = l_e(12);
     std::cout << " return value : " << ret << std::endl;
+
+    //
+    // lambda expression with argument  format is "[](){}()"
+    std::cout << std::endl;
+    std::cout << "------ lambda funtion with argument -----" << std::endl;
+    [](std::string str) // 引数の定義
+    {
+        std::cout << str << std::endl;
+    }
+    ( "I am a argument!");
+
 }
