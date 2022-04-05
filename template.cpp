@@ -138,6 +138,14 @@ A_value<T>& get(Alias<T>& a)
     return a.get_value();
 }
 
+//
+// variadic template
+template <typename... T>
+void vt(T... args){
+    std::cout << "size of the template pack : " << sizeof...(T) << std::endl;
+    std::cout << "size of the argument pack : " << sizeof...(args) << std::endl;
+}
+
 
 //
 // main routine from here
@@ -203,5 +211,11 @@ int main()
 
     Alias<int> a{42};
     std::cout << "using alias : " << get(a) << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "----- variadic template -----" <<std::endl;
+
+    vt<int>(1);                 // "<int>" is redundant
+    vt<int>(1, 2, 3, 4, 5);
 
 }
