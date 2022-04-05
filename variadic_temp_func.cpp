@@ -9,7 +9,7 @@ void func2()
 template <typename Head, typename... Body>
 void func2(Head head, Body... body)
 {
-    std::cout << head << "\t" << sizeof...(body) << "\n";   // decrement argument
+    std::cout << head << "\t" << sizeof...(body) << "\n";   // decrements arguments
 
     func2(body...);         // recursive call 
 }
