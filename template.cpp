@@ -140,10 +140,16 @@ A_value<T>& get(Alias<T>& a)
 
 //
 // variadic template
-template <typename... T>
-void vt(T... args){
-    std::cout << "size of the template pack : " << sizeof...(T) << std::endl;
-    std::cout << "size of the argument pack : " << sizeof...(args) << std::endl;
+template <typename... Args>
+void vt()
+{
+    std::cout << "no arg func is called\n" << std::endl;
+}
+
+template <typename Head, typename... Body>
+void vt(Head head, Body... body){
+    std::cout << "argument head : " << head << "\t" << "size of the residual arguments : " << sizeof...(body) << "\n";
+    vt(body...); 
 }
 
 
@@ -215,7 +221,8 @@ int main()
     std::cout << std::endl;
     std::cout << "----- variadic template -----" <<std::endl;
 
-    vt<int>(1);                 // "<int>" is redundant
+    vt<int>(0);                 // "<int>" is redundant
     vt<int>(1, 2, 3, 4, 5);
+    vt("ab", "cd", "ef", "gh", 99); // type deduction is applicable
 
 }
