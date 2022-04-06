@@ -167,9 +167,15 @@ void vt(Body1 first, Body2 second )
 template <typename Head, typename... Body>
 void vt(Head head, Body... body){
     std::cout << "argument head : " << head << "\t" << "size of the residual arguments : " << sizeof...(body) << "\n";
-    vt(body...);        // if there are overload functions, this calls these
+    vt(body...);        // if there are overload functions, "vt(body...)" calls these
 }
 
+//
+// generic lambda
+auto g_lambda = [](const auto& val)
+{
+    std::cout << " argument : " << val << std::endl;
+};
 
 //
 // main routine from here
@@ -243,4 +249,10 @@ int main()
     vt<int>(0);                 // "<int>" is redundant
     vt<int>(1, 2, 3, 4, 5);
     vt("ab", "cd", "ef", "gh", 99); // type deduction is applicable
+
+    std::cout << std::endl;
+    std::cout << "----- generic lambda -----" <<std::endl;
+    g_lambda(7);
+    g_lambda("string");
+
  }
