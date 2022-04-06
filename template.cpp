@@ -178,6 +178,22 @@ auto g_lambda = [](const auto& val)
 };
 
 //
+// class template argument deduction
+template <typename T>
+class ded{
+
+    T var;
+
+public:
+    ded(T var): var(var){};
+
+    void show(){
+        std::cout << var << std::endl;
+    }
+};
+
+
+//
 // main routine from here
 int main()
 {
@@ -255,4 +271,13 @@ int main()
     g_lambda(7);
     g_lambda("string");
 
+    std::cout << std::endl;
+    std::cout << "----- class template argument deduction -----" <<std::endl;
+
+    ded dd{"class parameter deduced"};
+    dd.show();
+
+    ded dd1{3.1415f};
+    dd1.show();
+ 
  }
