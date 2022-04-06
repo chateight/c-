@@ -161,7 +161,7 @@ void vt(Body first, Body second )
 template <typename Body1, typename Body2>   // this accepts different type arguments
 void vt(Body1 first, Body2 second )
 {
-    std::cout << "two args func is called : " << first << ", " << second << "\n" << std::endl;
+    std::cout << "two diffferent type of args func is called : " << first << ", " << second << "\n" << std::endl;
 }
 
 template <typename Head, typename... Body>
