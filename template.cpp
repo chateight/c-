@@ -146,10 +146,28 @@ void vt()
     std::cout << "no arg func is called\n" << std::endl;
 }
 
+template <typename Body>
+void vt(Body head)
+{
+    std::cout << "one arg func is called : " << head << "\n" << std::endl;
+}
+
+template <typename Body>            // this accepts only one type argument
+void vt(Body first, Body second )
+{
+    std::cout << "two args func is called : " << first << ", " << second << "\n" << std::endl;
+}
+
+template <typename Body1, typename Body2>   // this accepts different type arguments
+void vt(Body1 first, Body2 second )
+{
+    std::cout << "two args func is called : " << first << ", " << second << "\n" << std::endl;
+}
+
 template <typename Head, typename... Body>
 void vt(Head head, Body... body){
     std::cout << "argument head : " << head << "\t" << "size of the residual arguments : " << sizeof...(body) << "\n";
-    vt(body...); 
+    vt(body...);        // if there are overload functions, this calls these
 }
 
 
@@ -221,8 +239,8 @@ int main()
     std::cout << std::endl;
     std::cout << "----- variadic template -----" <<std::endl;
 
+    vt();
     vt<int>(0);                 // "<int>" is redundant
     vt<int>(1, 2, 3, 4, 5);
     vt("ab", "cd", "ef", "gh", 99); // type deduction is applicable
-
-}
+ }
