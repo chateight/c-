@@ -15,29 +15,46 @@ public:
 
 //
 // class template
-template <typename CT>
+template <typename CT, typename DT, typename ET>
 class ct{
 
 public:
-CT val;
+    CT val;
+    DT val1;
+    ET val2;
 
-void ct_f();
+    void ct_f();
 };
 
-template <typename CT>
-void ct<CT>::ct_f(){
-    std::cout << val << std::endl;
+template <typename CT, typename DT, typename ET>
+void ct<CT, DT, ET>::ct_f(){
+    std::cout << val << " : " << val1<< std::endl;
 }
 
 template <>                     // explicit specialization for the class
-class ct<void>{
+class ct<void, void, void>{
 
 public:
 
-void ct_f(){
+    void ct_f();
+};
+
+void ct<void, void, void>::ct_f(){
+
     std::cout << "class template \"void\" (explicit specialization)" << std::endl;
 }
 
+template <typename CT, typename ET>
+class ct<CT, void, ET>{
+
+public:
+    CT val;
+    ET val1;
+
+    void ct_f(){
+
+    std::cout << val << " : " << val1 << std::endl;
+    }
 };
 
 //
@@ -171,6 +188,20 @@ void vt(Head head, Body... body){
 }
 
 //
+// std::forward
+template <typename... T>
+void base_f(T&&... args){
+    std::cout << "number of args : " << sizeof...(T) << std::endl;
+}
+
+template <typename... T>
+void call_b(T&&... args){
+
+    base_f(std::forward<T>(args)...);       // forward keeps lhs & rhs
+
+}
+
+//
 // generic lambda
 auto g_lambda = [](const auto& val)
 {
@@ -194,6 +225,16 @@ public:
 
 
 //
+// using predicate to check the type traits
+template <typename T>
+void p_arg(T a){
+    static_assert(std::is_integral<T>::value, " arg is not integer");
+    std::cout << "arg : " << a << std::endl;
+
+}
+
+
+//
 // main routine from here
 int main()
 {
@@ -209,13 +250,16 @@ int main()
 
     std::cout << std::endl;
     std::cout << "----- template class -----" <<std::endl;
-    ct<float> tc{52.3f};
+    ct<float, float, float> tc{52.3f, 12.5f, 45.2f};
     tc.ct_f();
 
-    ct<std::string> tc_s{"bigger"};
+    ct<std::string, std::string, std::string> tc_s{"bigger", "smaller", "middle"};
     tc_s.ct_f();
 
-    ct<void> tc_v;
+    ct<std::string, void, std::string> tsv{"partial specilization", "middle"};
+    tsv.ct_f();
+
+    ct<void, void, void> tc_v;
     tc_v.ct_f();
 
     std::cout << std::endl;
@@ -267,6 +311,11 @@ int main()
     vt("ab", "cd", "ef", "gh", 99); // type deduction is applicable
 
     std::cout << std::endl;
+    std::cout << "----- forward all args -----" <<std::endl;
+    call_b(1, 2, 3, 4, 5, 6);
+
+
+    std::cout << std::endl;
     std::cout << "----- generic lambda -----" <<std::endl;
     g_lambda(7);
     g_lambda("string");
@@ -280,4 +329,9 @@ int main()
     ded dd1{3.1415f};
     dd1.show();
  
+    std::cout << std::endl;
+    std::cout << "----- using predicate to check the arg type -----" <<std::endl;
+    p_arg(10);
+    //p_arg(5432.3f);   // compile error since accept only integer
+
  }
