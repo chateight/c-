@@ -25,7 +25,7 @@ int main(){
     }
 
     catch(int i){
-        std::cout << "kind of exception is an integer exception: " << i << std::endl;
+        std::cout << "the kind of exception is an integer exception: " << i << std::endl;
     }
 
     catch(...){
