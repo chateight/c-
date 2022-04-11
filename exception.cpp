@@ -36,6 +36,29 @@ const char* s_except::what() const noexcept{
 }
 
 //
+// exception in the constructor
+class ex_con{
+
+
+    int e = -99;
+
+public:
+    ex_con(){}
+
+    ex_con(int e): e(e){
+    std::cout << "ex_con const was called" << std::endl;
+    if (e > 5){
+        throw e;
+        }
+    }
+
+    ~ex_con(){
+    std::cout << "ex_con dest was called" << std::endl;
+    }
+};
+
+
+//
 // main method from here
 int main(){
 
@@ -62,4 +85,21 @@ int main(){
     catch(s_except& ex){
         std::cout << ex.what() << std::endl;
     }
+
+    std::cout << std::endl;
+    std::cout << "----- exception in a constructor -----" <<std::endl;
+
+    try{
+        ex_con* ary = new ex_con[3];
+        ary[0] = ex_con{0};
+        ary[1] = ex_con{1};
+        ary[2] = ex_con{10};
+    }
+    catch(int e){
+        std::cout << e << std::endl;
+
+    }
+
+
+
 }
