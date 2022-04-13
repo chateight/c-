@@ -34,6 +34,29 @@ void rec(const base& ins){
 }
 
 //
+// down cast using static_cast
+class base_s{
+
+public:
+
+virtual ~base_s(){};
+
+const char* show_name()
+    const {return "base_s";}
+
+};
+
+class inhe_s : public base_s{
+
+public:
+
+const char* show_name()
+    const {return "inhe_s";}
+
+};
+
+
+//
 // main method from here
 int main(){
 
@@ -56,5 +79,25 @@ int main(){
 
     rec(ins);
     rec(ins_i);
+
+    std::cout << std::endl;
+    std::cout << "----- down cast using static_cast -----" << std::endl;
+
+    inhe_s sc;
+    base_s* pb = &sc;
+    inhe_s* pi = static_cast<inhe_s*>(pb);          // cast to the inhe_s
+    std::cout << pi->show_name() << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "----- down cast using dynamic_cast -----" << std::endl;
+
+    base_s rb = sc;
+
+    try{
+        inhe_s pd = dynamic_cast<inhe_s&>(rb);      // pd is not a reference
+    }
+    catch(std::bad_cast&){
+        std::cout << "fail to cast" << std::endl;
+    }
 
 }
