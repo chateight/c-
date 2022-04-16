@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <tuple>
 
 //
 // list output
@@ -43,8 +44,17 @@ int main(){
     li.sort();
     show_list(li);
 
-    auto gt = [](int x, int y){return x > y;};      // reverse sort
+    std::cout << std::endl;
+    auto gt = [](int x, int y){return x > y;};      // reverse sort( "x = y" produces a same output)
     li.sort(gt);                // higher order function call
     show_list(li);
+
+    std::cout << std::endl;
+    std::cout << "----- tuple & structured binding -----" << std::endl;
+    std::tuple tu{std::string{"tuple"}, 72.3f, 93};
+
+    auto& [a, b, c] = tu;       // copy or reference is available 
+
+    std::cout << a << ", " << b << ", " << c << std::endl;
 
 }
