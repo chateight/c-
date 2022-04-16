@@ -3,6 +3,7 @@
 #include <list>
 #include <tuple>
 #include <set>
+#include <map>
 
 //
 // list output
@@ -89,5 +90,25 @@ int main(){
 
     std::cout << std::endl;
     std::cout << "----- container class : map -----" << std::endl;
+
+    std::map ma = {
+        std::pair{"inpulse", 2},
+        std::pair{"red stone", 3},
+    };
+
+    for (const auto& [key, val] : ma){
+        std::cout << key << " : " << val << std::endl;
+    }
+
+    std::cout << std::endl;
+    auto pt = ma.find("inpulse");
+
+    if (pt == ma.end()){
+        std::cout << "the search result was not found " << std::endl;
+    }
+    else{
+        const auto& [key, val] = *pt;
+        std::cout << "the result is : " << val << std::endl;
+    }
 
 }
