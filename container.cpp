@@ -51,7 +51,7 @@ int main(){
 
     std::cout << std::endl;
     std::cout << "----- tuple & structured binding -----" << std::endl;
-    std::tuple tu{std::string{"tuple"}, 72.3f, 93};         // you can use raw string "tuple" instead of the string constructor
+    std::tuple tu{std::string{"tuple"}, 72.3f, 93};         // you can use a raw string "tuple" instead of the string constructor
 
     auto& [a, b, c] = tu;       // copy or reference is available 
 
