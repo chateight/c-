@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <tuple>
+#include <set>
 
 //
 // list output
@@ -12,6 +13,17 @@ void show_list(const std::list<int>& li){
     std::cout << std::endl;
 }
 
+//
+// find "set" element function
+void find_s(std::set<int>& st, int num){
+    auto pt = st.find(num);             // find() returns "end()" pointer if it was not found
+    if (pt == st.end()){
+        std::cout << " a search result was not found " << std::endl;
+    }
+    else{
+        std::cout << " result is : " << *pt << std::endl;
+    }
+}
 
 //
 // main function from here
@@ -56,5 +68,26 @@ int main(){
     auto& [a, b, c] = tu;       // copy or reference is available 
 
     std::cout << a << ", " << b << ", " << c << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "----- container class : set -----" << std::endl;
+
+    std::set st = {4,1,5,6,7,3,7,8,9,1,2};          // "set" does not permit same value in the menber, same values are degenerated
+
+    st.insert(12);
+    auto s_ptr = st.begin();
+    std::cout << "size of the set : "<< st.size() << std::endl;
+    while (s_ptr != st.end()){
+
+        std::cout << *s_ptr << " ";
+        ++s_ptr;
+    }
+    std::cout << std::endl;
+
+    find_s(st, 10);
+    find_s(st, 12);
+
+    std::cout << std::endl;
+    std::cout << "----- container class : map -----" << std::endl;
 
 }
