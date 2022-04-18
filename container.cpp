@@ -4,6 +4,7 @@
 #include <tuple>
 #include <set>
 #include <map>
+#include <algorithm>
 
 //
 // list output
@@ -25,6 +26,20 @@ void find_s(std::set<int>& st, int num){
         std::cout << " result is : " << *pt << std::endl;
     }
 }
+
+//
+// higher order function in the algorythms
+template <typename T>
+void s_show(const std::vector<int>& array, T prep){      // prep is a function object
+
+    for (int i: array){
+        if (prep(i)){
+            std::cout << i << " ";
+        }
+    }
+    std::cout << std::endl;
+}
+
 
 //
 // main function from here
@@ -110,5 +125,15 @@ int main(){
         const auto& [key, val] = *pt;
         std::cout << "the result is : " << val << std::endl;
     }
+
+    std::cout << std::endl;
+    std::cout << "----- higher order function for algorythms -----" << std::endl;
+
+    std::vector<int> array = {6, 2, 3, 7, 6, 8, 1, 6, 9, 23};
+
+    s_show(array, [](int v) {return v < 10;});      // delta function ; if element is less than 10
+
+    int cnt = std::count_if(array.begin(), array.end(), [array](int i){return i == array[0];}) - 1;
+    std::cout << "number of matching elements with the top : " << cnt << std::endl;
 
 }
