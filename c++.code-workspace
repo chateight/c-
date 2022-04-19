@@ -2,10 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"name": "IMU_dev",
-			"path": "../../PlatformIO/Projects/IMU_dev"
 		}
 	],
 	"settings": {
