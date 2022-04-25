@@ -8,7 +8,7 @@ std::chrono::system_clock::time_point  start, end;
 start = std::chrono::system_clock::now();
 
 int sqt = 0;
-for (int i = 1; i <= 1000000; ++i){         // check prime numbers
+for (int i = 2; i <= 1000000; ++i){         // check prime numbers
     flag = false;
     sqt = sqrt(i);
     for (int j = 2; j <= sqt; ++j){
