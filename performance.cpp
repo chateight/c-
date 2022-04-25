@@ -18,14 +18,14 @@ for (int i = 1; i <= 1000000; ++i){         // check prime numbers
         }
     } 
     if (flag != true){
-        std::cout << i << std::endl;
+        //std::cout << i << std::endl;
     }
 }
 
 end = std::chrono::system_clock::now();
 double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
 
- std::cout << sqt << " " << elapsed << " ms" <<std::endl;
+ std::cout << elapsed << " ms" <<std::endl;
 
 }
 
