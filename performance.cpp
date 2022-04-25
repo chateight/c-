@@ -5,7 +5,7 @@
 
 int main(){
 
-int sqt = 0;
+int sqt;
 bool flag;
 std::vector<int> vec{};
 
