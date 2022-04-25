@@ -90,7 +90,12 @@
 			"codecvt": "cpp",
 			"fstream": "cpp",
 			"iomanip": "cpp",
-			"stack": "cpp"
+			"stack": "cpp",
+			"charconv": "cpp",
+			"list": "cpp",
+			"regex": "cpp",
+			"netfwd": "cpp",
+			"cfenv": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,
