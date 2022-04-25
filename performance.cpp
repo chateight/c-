@@ -1,8 +1,11 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
+#include <vector>
 
 bool flag;
+std::vector<int> vec{};
+
 int main(){
 std::chrono::system_clock::time_point  start, end;
 start = std::chrono::system_clock::now();
@@ -18,14 +21,14 @@ for (int i = 2; i <= 1000000; ++i){         // check prime numbers
         }
     } 
     if (flag != true){
-        //std::cout << i << std::endl;
+        vec.push_back(i);
     }
 }
 
 end = std::chrono::system_clock::now();
 double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
 
- std::cout << elapsed << " ms" <<std::endl;
+ std::cout << elapsed << " ms" << ", number of prime numbers(up to 1M) : " << vec.size() << std::endl;
 
 }
 
