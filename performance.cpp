@@ -3,14 +3,16 @@
 #include <cmath>
 #include <vector>
 
+int main(){
+
+int sqt = 0;
 bool flag;
 std::vector<int> vec{};
 
-int main(){
 std::chrono::system_clock::time_point  start, end;
 start = std::chrono::system_clock::now();
 
-int sqt = 0;
+
 for (int i = 2; i <= 1000000; ++i){         // check prime numbers
     flag = false;
     sqt = sqrt(i);
