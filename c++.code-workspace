@@ -95,7 +95,8 @@
 			"list": "cpp",
 			"regex": "cpp",
 			"netfwd": "cpp",
-			"cfenv": "cpp"
+			"cfenv": "cpp",
+			"filesystem": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,

@@ -28,10 +28,12 @@ for (int i = 2; i <= 1000000; ++i){         // check prime numbers
 
 end = std::chrono::system_clock::now();
 double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
-std::cout << elapsed << " ms" << std::endl;
+std::cout << "elapsed time : " << elapsed << " ms" << std::endl;
 
 std::cout << std::endl;
-std::cout << "last five prime numbers " << vec.size() << std::endl;
+std::cout << "number of prime numbers(up to 1M) : " << vec.size() << std::endl;
+std::cout << std::endl;
+std::cout << "last five prime numbers " << std::endl;
 
 for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr){
     std::cout << *itr << std::endl;
