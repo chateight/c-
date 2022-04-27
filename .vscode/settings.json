@@ -26,5 +26,6 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "code-runner.runInTerminal": true
 }

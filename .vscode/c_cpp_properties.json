@@ -3,11 +3,12 @@
         {
             "name": "macos-gcc-x64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pybind11/include/**"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
-            "cppStandard": "c++14",
+            "cppStandard": "c++20",
             "intelliSenseMode": "macos-gcc-x64",
             "compilerArgs": []
         }
