@@ -39,4 +39,3 @@ for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr){
     std::cout << *itr << std::endl;
 }
 }
-
