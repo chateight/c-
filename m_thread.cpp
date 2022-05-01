@@ -46,75 +46,6 @@ void ThreadA()
     }
 }
 
-void ThreadB()
-{
-    while (true)
-    {
-        bool flag = false;
-        int i = get_int();
-        if (i > max_int)
-        {
-            break;
-        }
-        int sqt = sqrt(i);
-        for (int j = 2; j <= sqt; ++j){
-            if (i%j == 0){
-                flag = true;
-                break;
-            }
-        }
-        if (flag != true){
-            add_prime(i);
-        }
-    }
-}
-
-void ThreadC()
-{
-    while (true)
-    {
-        bool flag = false;
-        int i = get_int();
-        if (i > max_int)
-        {
-            break;
-        }
-        int sqt = sqrt(i);
-        for (int j = 2; j <= sqt; ++j){
-            if (i%j == 0){
-                flag = true;
-                break;
-            }
-        }
-        if (flag != true){
-            add_prime(i);
-        }
-    }
-}
-
-void ThreadD()
-{
-    while (true)
-    {
-        bool flag = false;
-        int i = get_int();
-        if (i > max_int)
-        {
-            break;
-        }
-        int sqt = sqrt(i);
-        for (int j = 2; j <= sqt; ++j){
-            if (i%j == 0){
-                flag = true;
-                break;
-            }
-        }
-        if (flag != true){
-            add_prime(i);
-        }
-    }
-}
-
 int main()
 {
     std::chrono::system_clock::time_point  start, end;
@@ -123,10 +54,10 @@ int main()
     std::cout << std::endl;
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
-    std::thread th_a(ThreadA);
-    std::thread th_b(ThreadB);
-    std::thread th_c(ThreadC);
-    std::thread th_d(ThreadD);
+    std::thread th_a(ThreadA);      // to make thread, in this case same method is used to generate threads
+    std::thread th_b(ThreadA);
+    std::thread th_c(ThreadA);
+    std::thread th_d(ThreadA);
 
     th_a.join();
     th_b.join();
