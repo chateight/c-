@@ -96,7 +96,11 @@
 			"regex": "cpp",
 			"netfwd": "cpp",
 			"cfenv": "cpp",
-			"filesystem": "cpp"
+			"filesystem": "cpp",
+			"forward_list": "cpp",
+			"strstream": "cpp",
+			"typeindex": "cpp",
+			"valarray": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,
