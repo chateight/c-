@@ -73,6 +73,11 @@ int main()
     double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
     std::cout << "elapsed time : " << elapsed << " ms" << std::endl;
 
+    std::cout << std::endl;
+    std::cout << "number of prime numbers : " << vec.size() << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "last five prime numbers" << std::endl;
     std::sort(vec.begin(), vec.end() );
     for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr){
     std::cout << *itr << std::endl;
