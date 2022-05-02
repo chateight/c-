@@ -92,8 +92,8 @@ int f_add(int a, int b){
 }
 
 //
-// capture in delta expression
-class delta{
+// capture in lambda expression
+class lambda{
     int a = 200;
 
     public: 
@@ -224,9 +224,9 @@ int main(){
     cout << "f_add call : " << func_ptr(21,34) << endl;
 
     //
-    // capture in delta expression
+    // capture in lambda expression
     cout << "----- capture using \"this\" pointer -----" << endl;
-    delta d;
+    lambda d;
     d.show(43);
     d.show_1(32);
     d.show(38);
