@@ -82,8 +82,9 @@ int main()
     std::cout << std::endl;
     std::cout << "last five prime numbers" << std::endl;
     std::sort(vec.begin(), vec.end() );
-    for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr){
-    std::cout << *itr << std::endl;
+    for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr)
+    {
+        std::cout << *itr << std::endl;
     }
 
 }
