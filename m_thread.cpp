@@ -38,13 +38,16 @@ void ThreadA()
             break;
         }
         int sqt = sqrt(i);
-        for (int j = 2; j <= sqt; ++j){
-            if (i%j == 0){
+        for (int j = 2; j <= sqt; ++j)
+        {
+            if (i%j == 0)
+            {
                 flag = true;
                 break;
             }
         }
-        if (flag != true){
+        if (flag != true)
+        {
             add_prime(i);
         }
     }
@@ -83,5 +86,4 @@ int main()
     std::cout << *itr << std::endl;
     }
 
-    return 0;
 }
