@@ -20,7 +20,7 @@ int get_int()
 {
     std::lock_guard<std::mutex> lock(mtx_);
     ++cal_int;
-    if (cal_int > 2 && cal_int%2 == 0)      // do not return an even number over four
+    if (cal_int > 2 && cal_int%2 == 0)      // do not return an even number larger than four
     {
         ++cal_int;
     }
