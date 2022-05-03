@@ -61,15 +61,18 @@ int main()
     std::cout << std::endl;
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
-    std::thread th_a(ThreadA);      // to make thread, in this case same method is used to generate threads
-    std::thread th_b(ThreadA);
-    std::thread th_c(ThreadA);
-    std::thread th_d(ThreadA);
+    std::vector<std::thread> threads;       // array of threads
+    int num_thread = 12;                    // number of threads
+    for(size_t i=0; i < num_thread; ++i){
+        threads.emplace_back(std::thread(ThreadA));
+    }
 
-    th_a.join();
-    th_b.join();
-    th_c.join();
-    th_d.join();
+    for(auto& thread : threads){
+        thread.join();
+    }
+
+    std::cout << std::endl;
+    std::cout << "Number of threads = " << num_thread << std::endl;
 
     std::cout << std::endl;
     end = std::chrono::system_clock::now();
