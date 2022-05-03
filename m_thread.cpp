@@ -5,7 +5,7 @@
 #include <cmath>
 
 std::mutex mtx_;                // mutex for exclusive control
-std::vector<int> vec{};         // prime numbers array
+std::vector<int> vec;           // prime numbers array
 int cal_int = 1;                // calc target integer
 int max_int = 10000*1000;       // calc target max number
 std::vector<std::thread> threads;       // array of threads
