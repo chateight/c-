@@ -7,10 +7,9 @@
 std::mutex mtx_;                // mutex for exclusive control
 std::vector<int> vec{};         // prime numbers array
 int cal_int = 1;                // calc target integer
-int max_int = 10000000;         // calc target max number
+int max_int = 10000*1000;         // calc target max number
 std::vector<std::thread> threads;       // array of threads
 int num_thread = 12;                    // number of threads
-
 
 
 void add_prime(int i)           // store the prime numberns in the vector
@@ -55,6 +54,7 @@ void ThreadA()
         }
     }
 }
+
 
 int main()
 {
