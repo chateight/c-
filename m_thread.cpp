@@ -64,11 +64,13 @@ int main()
     std::cout << std::endl;
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
-    for(size_t i=0; i < num_thread; ++i){               // create thread asd store in the array
+    for (size_t i=0; i < num_thread; ++i)
+    {                                           // create thread asd store in the array
         threads.emplace_back(std::thread(prime_check));
     }
 
-    for(auto& thread : threads){                        // wait for completion
+    for (auto& thread : threads)
+    {                                           // wait for completion
         thread.join();
     }
 
