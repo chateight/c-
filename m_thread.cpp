@@ -69,7 +69,7 @@ int main()
         threads.emplace_back(std::thread(prime_check));
     }
 
-    for (auto& thread : threads)                // wait for completion, std::thread private constructor is not copyable(auto"&" is needed to reference the thread constructor)
+    for (auto&& thread : threads)                // wait for completion, std::thread private constructor is not copyable(auto"&" ot "&&" is needed to reference the thread constructor)
     {                                           
         thread.join();
     }
