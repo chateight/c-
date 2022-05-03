@@ -29,7 +29,7 @@ int get_int()                   // get the integer to be tested
     return cal_int;
 }
 
-void ThreadA()
+void prime_check()
 {
     while (true)
     {
@@ -65,7 +65,7 @@ int main()
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
     for(size_t i=0; i < num_thread; ++i){               // create thread asd store in the array
-        threads.emplace_back(std::thread(ThreadA));
+        threads.emplace_back(std::thread(prime_check));
     }
 
     for(auto& thread : threads){                        // wait for completion
