@@ -10,13 +10,13 @@ int cal_int = 1;                // calc target integer
 int max_int = 10000000;         // calc target max number
 
 
-void add_prime(int i)
+void add_prime(int i)           // store the prime numberns in the vector
 {
     std::lock_guard<std::mutex> lock(mtx_);
     vec.push_back(i);
 }
 
-int get_int()
+int get_int()                   // get the integer to be tested
 {
     std::lock_guard<std::mutex> lock(mtx_);
     ++cal_int;
