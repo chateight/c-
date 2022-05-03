@@ -40,7 +40,7 @@ void ThreadA()
             break;
         }
         int sqt = sqrt(i);
-        for (int j = 3; j <= sqt; ++j)
+        for (int j = 3; j <= sqt; ++j)      // division start from 3 since an even number was already omitted
         {
             if (i%j == 0)
             {
@@ -64,11 +64,11 @@ int main()
     std::cout << std::endl;
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
-    for(size_t i=0; i < num_thread; ++i){
+    for(size_t i=0; i < num_thread; ++i){               // create thread asd store in the array
         threads.emplace_back(std::thread(ThreadA));
     }
 
-    for(auto& thread : threads){
+    for(auto& thread : threads){                        // wait for completion
         thread.join();
     }
 
