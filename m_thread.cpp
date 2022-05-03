@@ -40,7 +40,7 @@ void ThreadA()
             break;
         }
         int sqt = sqrt(i);
-        for (int j = 2; j <= sqt; ++j)
+        for (int j = 3; j <= sqt; ++j)
         {
             if (i%j == 0)
             {
