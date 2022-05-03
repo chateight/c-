@@ -90,7 +90,7 @@ int main()
 
     std::sort(vec.begin(), vec.end() );         // stored numbers need to be sorted out since stored timming do not gurantee the order
     
-    for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr)   // last five numbers print out
+    for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr)   // print out last five numbers 
     {
         std::cout << *itr << std::endl;
     }
