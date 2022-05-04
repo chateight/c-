@@ -64,12 +64,12 @@ int main()
     std::cout << std::endl;
     std::cout << "Hardware concurrency = " << std::thread::hardware_concurrency() << std::endl;
 
-    for (size_t i=0; i < num_thread; ++i)       // create thread asd store in the array
+    for (int i=0; i < num_thread; ++i)      // create thread and store in the array
     {                                           
         threads.emplace_back(std::thread(prime_check));
     }
 
-    for (auto&& thread : threads)                // wait for completion, std::thread private constructor is not copyable(auto"&" ot "&&" is needed to reference the thread constructor)
+    for (auto&& thread : threads)           // wait for completion, std::thread private constructor is not copyable(auto"&" ot "&&" is needed to reference the thread constructor)
     {                                           
         thread.join();
     }
