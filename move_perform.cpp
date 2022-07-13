@@ -10,7 +10,7 @@ class home
 
 public:
     explicit home(std::size_t size)
-        : m_land{new int[size] ()}{}
+        : m_land{new int[size] }{}
     
     ~home() { delete [] m_land;}
 
@@ -43,10 +43,10 @@ int main()
     home A{a_size};
     std::cout << "A\'s land address : " << A.land() << std::endl;
 
+    A.copy();
+
     home B{std::move(A)};
     std::cout << "B\'s land address : " << B.land() << std::endl;
-
-    B.copy();
 
     std::cout << std::endl;
     end = std::chrono::system_clock::now();
