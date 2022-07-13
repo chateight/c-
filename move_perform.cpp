@@ -1,7 +1,7 @@
 #include <iostream>
 #include <utility>
 
-const int a_size = 1000000*100;
+const long a_size = 1000000*100;
 
 class home
 {
@@ -9,7 +9,7 @@ class home
     int* cp_land;
 
 public:
-    explicit home(std::size_t size)
+    explicit home(long size)
         : m_land{new int[size] ()}{}
     
     ~home() { delete [] m_land;}
