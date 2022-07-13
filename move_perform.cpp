@@ -28,6 +28,11 @@ public:
             cp_land[i] = m_land[i];
         }
     }
+
+    void del()
+    {
+        delete [] cp_land;
+    }
 };
 
 home::home(home&& other)
@@ -47,6 +52,7 @@ int main()
 
     A.copy();
     std::cout << "A\'s cp_land address : " << A.land_cp() << std::endl;
+    A.del();
 
     home B{std::move(A)};
     std::cout << "B\'s land address : " << B.land() << std::endl;
