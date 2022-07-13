@@ -18,6 +18,8 @@ public:
 
     int* land() const { return m_land; }
 
+    int* land_cp() const { return cp_land; }
+
     void copy()
     {
         cp_land = new int[a_size];
@@ -44,6 +46,7 @@ int main()
     std::cout << "A\'s land address : " << A.land() << std::endl;
 
     A.copy();
+    std::cout << "A\'s cp_land address : " << A.land_cp() << std::endl;
 
     home B{std::move(A)};
     std::cout << "B\'s land address : " << B.land() << std::endl;
