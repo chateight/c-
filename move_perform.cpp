@@ -10,7 +10,7 @@ class home
 
 public:
     explicit home(std::size_t size)
-        : m_land{new int[size] }{}
+        : m_land{new int[size] ()}{}
     
     ~home() { delete [] m_land;}
 
