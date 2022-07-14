@@ -16,7 +16,7 @@ void sub(int a, int b){
     printf("a - b = %d\n", a - b);
 }
 
-void calc(int a, int b, FUNC_POINTER p){        // using callback function
+void calc(int a, int b, FUNC_POINTER p){        // using callback function, wrap the function pointer
     (*p)(a, b);
 }
 //
