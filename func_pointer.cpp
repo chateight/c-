@@ -42,7 +42,7 @@ int main(){
     //
     // run the callback function example
     FUNC_POINTER p;
-    p = add;
+    p = &add;                                   // &add = add
     calc(100, 100, p);
     p = sub;
     calc(100, 100, p);
