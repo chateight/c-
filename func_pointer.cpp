@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef void (*FUNC_POINTER)(int, int);     // obsolete style, using is for c++
+typedef void (*FUNC_POINTER)(int, int);     // obsolete style, using is for c++ @next line
+//using FUNC_POINTER = void (*)(int, int); 
 
 // callback function
 void add(int a, int b){
