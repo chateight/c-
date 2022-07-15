@@ -1,7 +1,8 @@
 #include <iostream>
 #include <utility>
+#include <vector>
 
-const long a_size = 1000000*100;
+const int a_size = 1000000*100;
 
 class home
 {
@@ -9,7 +10,7 @@ class home
     int* cp_land;
 
 public:
-    explicit home(long size)
+    explicit home(int size)
         : m_land{new int[size] ()}{}
     
     ~home() { delete [] m_land;}
@@ -27,6 +28,14 @@ public:
         {
             cp_land[i] = m_land[i];
         }
+    }
+
+    void v_copy()
+    {
+        std::vector<int> v_int(a_size, 0);
+        //std::vector<int> vc_int(a_size);
+        //std::copy(v_int.begin(), v_int.end(), vc_int.begin());
+        std::vector<int> vc_int = v_int;
     }
 
     void del()
@@ -56,6 +65,8 @@ int main()
 
     home B{std::move(A)};
     std::cout << "B\'s land address : " << B.land() << std::endl;
+
+    B.v_copy();
 
     std::cout << std::endl;
     end = std::chrono::system_clock::now();
