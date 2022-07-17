@@ -1,4 +1,5 @@
 #include <iostream>
+// function pointer sample using "using" & call back
 
 using my_func = int (*)(int,int);
 

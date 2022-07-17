@@ -100,7 +100,8 @@
 			"forward_list": "cpp",
 			"strstream": "cpp",
 			"typeindex": "cpp",
-			"valarray": "cpp"
+			"valarray": "cpp",
+			"__functional_03": "cpp"
 		},
 		"java.completion.enabled": false,
 		"java.debug.settings.enableRunDebugCodeLens": false,
