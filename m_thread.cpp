@@ -89,7 +89,7 @@ int main()
     std::cout << std::endl;
     std::cout << "last five prime numbers" << std::endl;
 
-   std::sort(vec.begin(), vec.end() );         // stored numbers need to be sorted out since stored timming do not gurantee the order
+    std::sort(vec.begin(), vec.end() );         // stored numbers need to be sorted out since stored timming do not gurantee the order
     
     for (auto itr = (vec.end() - 5); itr != vec.end(); ++itr)   // print out last five numbers 
     {
