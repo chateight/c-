@@ -4,7 +4,7 @@
             "name": "macos-gcc-x64",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pybind11/include/**"
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
